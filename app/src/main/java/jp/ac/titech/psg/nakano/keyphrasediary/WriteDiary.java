@@ -5,12 +5,16 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class WriteDiary extends ActionBarActivity {
 
     private EditText diaryText;
+    private Button get_keyphrase_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +23,7 @@ public class WriteDiary extends ActionBarActivity {
 
         diaryText = (EditText) findViewById(R.id.diary_text);
         diaryText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        get_keyphrase_button = (Button) findViewById(R.id.get_keyphrase_button);
     }
 
     @Override
@@ -41,5 +46,10 @@ public class WriteDiary extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void clickGetKeyphrase(View v){
+        String text = diaryText.getText().toString();
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 }
