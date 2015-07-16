@@ -8,7 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import java.util.List;
 
 
 public class WriteDiary extends ActionBarActivity {
@@ -50,6 +51,12 @@ public class WriteDiary extends ActionBarActivity {
 
     public void clickGetKeyphrase(View v){
         String text = diaryText.getText().toString();
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+        YahooConnector.getKeyphrase(text, this);
+    }
+
+    public void ariveKeyphrase(List<String> keyphrase){
+        for(String k:keyphrase){
+            System.out.println(k);
+        }
     }
 }
