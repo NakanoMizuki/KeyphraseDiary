@@ -1,30 +1,30 @@
 package jp.ac.titech.psg.nakano.keyphrasediary;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 
 
-public class MainActivity extends ActionBarActivity {
+public class WriteDiary extends ActionBarActivity {
 
-    private Button go_write_button;
+    private EditText diaryText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_write_diary);
 
-        go_write_button = (Button) findViewById(R.id.go_write_button);
+        diaryText = (EditText) findViewById(R.id.diary_text);
+        diaryText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_write_diary, menu);
         return true;
     }
 
@@ -41,10 +41,5 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void goWriteActivity(View v){
-        Intent intent = new Intent(this, WriteDiary.class);
-        startActivity(intent);
     }
 }
