@@ -1,5 +1,6 @@
 package jp.ac.titech.psg.nakano.keyphrasediary;
 
+import android.util.Log;
 import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -22,43 +23,46 @@ public class YahooConnector {
     private static final String REQUEST = "http://jlp.yahooapis.jp/KeyphraseService/V1/extract?";
     private static final String ENCODE = "UTF-8";
     private static final int NUM = 5;
+    private static final String TAG = "YahooConnector";
 
-    public static void getKeyphrase(final String sentence, final WriteDiary writeDiary){
+    public static void getKeyphrase(final String sentence, final WriteDiary writeDiary) {
+        assert sentence == null;
+        assert sentence.equals("");
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    List<String> phrases = new ArrayList<String>();
-                    try{
-                        String urlstring = REQUEST
-                                + "appid=" + APP_ID
-                                + "&sentence=" + URLEncoder.encode(sentence, ENCODE)
-                                + "&output=" + OUTPUT;
-                        System.out.println(urlstring);
-                        URL url = new URL(urlstring);
-                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                        connection.setRequestMethod("GET");
-                        connection.connect();
-                        phrases = parseXML(connection.getInputStream());
-                    }catch (IOException e){
-
-                    }catch (XmlPullParserException e){
-
-                    }
-                    writeDiary.ariveKeyphrase(phrases);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<String> phrases = new ArrayList<String>();
+                try {
+                    String urlstring = REQUEST
+                            + "appid=" + APP_ID
+                            + "&sentence=" + URLEncoder.encode(sentence, ENCODE)
+                            + "&output=" + OUTPUT;
+                    Log.d(TAG, "urlstring= " + urlstring);
+                    URL url = new URL(urlstring);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("GET");
+                    connection.connect();
+                    phrases = parseXML(connection.getInputStream());
+                } catch (IOException e) {
+                    writeDiary.failGettingKeyphrase();
+                } catch (XmlPullParserException e) {
+                    writeDiary.failGettingKeyphrase();
                 }
-            }).start();
+                writeDiary.arriveKeyphrase(phrases);
+            }
+        }).start();
     }
 
-    private static List<String> parseXML(InputStream stream) throws XmlPullParserException, IOException{
+    private static List<String> parseXML(InputStream stream) throws XmlPullParserException, IOException {
         List<String> phrases = new ArrayList<String>();
 
         XmlPullParser parser = Xml.newPullParser();
         parser.setInput(stream, ENCODE);
         int eventType = parser.getEventType();
-        while(eventType != XmlPullParser.END_DOCUMENT){
-            if(eventType == XmlPullParser.START_TAG){
-                if(parser.getName().equals("Keyphrase")){
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+            if (eventType == XmlPullParser.START_TAG) {
+                if (parser.getName().equals("Keyphrase")) {
                     phrases.add(parser.nextText().toString());
                 }
             }

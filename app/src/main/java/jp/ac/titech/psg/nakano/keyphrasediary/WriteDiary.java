@@ -1,21 +1,26 @@
 package jp.ac.titech.psg.nakano.keyphrasediary;
 
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.List;
 
 
 public class WriteDiary extends ActionBarActivity {
 
+    private static final String TAG = "WriteDiary";
     private EditText diaryText;
     private Button get_keyphrase_button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +59,12 @@ public class WriteDiary extends ActionBarActivity {
         YahooConnector.getKeyphrase(text, this);
     }
 
-    public void ariveKeyphrase(List<String> keyphrase){
+    public void arriveKeyphrase(List<String> keyphrase){
         for(String k:keyphrase){
-            System.out.println(k);
+            Log.d(TAG, k);
         }
+    }
+    public void failGettingKeyphrase(){
+        Toast.makeText(this, "キーフレーズの取得に失敗しました。", Toast.LENGTH_SHORT);
     }
 }
