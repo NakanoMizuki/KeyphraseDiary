@@ -1,17 +1,24 @@
 package jp.ac.titech.psg.nakano.keyphrasediary;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    private Button go_write_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        go_write_button = (Button) findViewById(R.id.go_write_button);
     }
 
     @Override
@@ -34,5 +41,10 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void goWriteActivity(View v){
+        Intent intent = new Intent(this, WriteDiary.class);
+        startActivity(intent);
     }
 }
