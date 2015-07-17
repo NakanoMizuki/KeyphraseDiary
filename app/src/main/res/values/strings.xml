@@ -10,4 +10,5 @@
     <string name="write_title_hint">タイトル</string>
     <string name="write_diary_hint">日記</string>
     <string name="get_keyphrase">タグを自動取得</string>
+    <string name="title_activity_read_diary">ReadDiary</string>
 </resources>
