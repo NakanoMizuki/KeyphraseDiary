@@ -1,7 +1,7 @@
 package jp.ac.titech.psg.nakano.keyphrasediary;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +13,7 @@ import android.widget.Toast;
 import java.util.List;
 
 
-public class WriteDiary extends ActionBarActivity {
+public class WriteDiary extends AppCompatActivity {
 
     private static final String TAG = "WriteDiary";
     private Button reset_button;
