@@ -2,16 +2,26 @@ package jp.ac.titech.psg.nakano.keyphrasediary;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.List;
+
+import jp.ac.titech.psg.nakano.keyphrasediary.database.DiaryTableHelper;
+import jp.ac.titech.psg.nakano.keyphrasediary.model.Diary;
+
 
 public class ReadDiary extends AppCompatActivity {
+
+    private static final String TAG = "ReadDiary";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_diary);
+
+        printAllDiary();
     }
 
     @Override
@@ -34,5 +44,13 @@ public class ReadDiary extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void printAllDiary(){
+        DiaryTableHelper diaryTableHelper = new DiaryTableHelper(this);
+        List<Diary> diaries = diaryTableHelper.getAllDiary();
+        for(Diary d : diaries){
+            Log.d(TAG, d.toString());
+        }
     }
 }
