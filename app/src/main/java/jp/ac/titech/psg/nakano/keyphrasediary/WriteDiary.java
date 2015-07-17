@@ -1,6 +1,5 @@
 package jp.ac.titech.psg.nakano.keyphrasediary;
 
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.InputType;

@@ -64,6 +64,7 @@ public class YahooConnector {
             if (eventType == XmlPullParser.START_TAG) {
                 if (parser.getName().equals("Keyphrase")) {
                     phrases.add(parser.nextText().toString());
+                    if(phrases.size() >= NUM) break;
                 }
             }
             eventType = parser.next();
