@@ -16,7 +16,9 @@ import java.util.List;
 public class WriteDiary extends ActionBarActivity {
 
     private static final String TAG = "WriteDiary";
-    private EditText title;
+    private Button reset_button;
+    private Button save_button;
+    private EditText titleText;
     private EditText diaryText;
     private Button get_keyphrase_button;
 
@@ -26,7 +28,9 @@ public class WriteDiary extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_diary);
 
-        title = (EditText) findViewById(R.id.write_title);
+        reset_button = (Button) findViewById(R.id.reset_button);
+        save_button = (Button) findViewById(R.id.save_button);
+        titleText = (EditText) findViewById(R.id.write_title);
         diaryText = (EditText) findViewById(R.id.diary_text);
         get_keyphrase_button = (Button) findViewById(R.id.get_keyphrase_button);
     }
@@ -51,6 +55,15 @@ public class WriteDiary extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void clickReset(View v){
+        finish();
+    }
+
+    public void clickSave(View v){
+        Log.d(TAG, "title=" + titleText.getText().toString());
+        Log.d(TAG, "diary=" + diaryText.getText().toString());
     }
 
     public void clickGetKeyphrase(View v){
