@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import jp.ac.titech.psg.nakano.keyphrasediary.database.DiaryTableHelper;
+
 
 public class WriteDiary extends AppCompatActivity {
 
@@ -58,12 +60,17 @@ public class WriteDiary extends AppCompatActivity {
     }
 
     public void clickReset(View v){
+        Log.d(TAG, "clickReset");
         finish();
     }
 
     public void clickSave(View v){
-        Log.d(TAG, "title=" + titleText.getText().toString());
-        Log.d(TAG, "diary=" + diaryText.getText().toString());
+        String title = titleText.getText().toString();
+        String content = diaryText.getText().toString();
+        Log.d(TAG, "title=" + title);
+        Log.d(TAG, "diary=" + content);
+        DiaryTableHelper diaryTableHelper = new DiaryTableHelper(this);
+        diaryTableHelper.insert(title, content);
     }
 
     public void clickGetKeyphrase(View v){
