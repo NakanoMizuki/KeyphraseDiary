@@ -2,7 +2,6 @@ package jp.ac.titech.psg.nakano.keyphrasediary;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +16,7 @@ import java.util.List;
 public class WriteDiary extends ActionBarActivity {
 
     private static final String TAG = "WriteDiary";
+    private EditText title;
     private EditText diaryText;
     private Button get_keyphrase_button;
 
@@ -26,8 +26,8 @@ public class WriteDiary extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_diary);
 
+        title = (EditText) findViewById(R.id.write_title);
         diaryText = (EditText) findViewById(R.id.diary_text);
-        diaryText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         get_keyphrase_button = (Button) findViewById(R.id.get_keyphrase_button);
     }
 
