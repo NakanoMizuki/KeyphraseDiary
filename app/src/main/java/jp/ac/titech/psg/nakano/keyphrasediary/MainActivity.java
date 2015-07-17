@@ -3,22 +3,27 @@ package jp.ac.titech.psg.nakano.keyphrasediary;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+
+import java.util.List;
+
+import jp.ac.titech.psg.nakano.keyphrasediary.database.DiaryTableHelper;
+import jp.ac.titech.psg.nakano.keyphrasediary.model.Diary;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button go_write_button;
+    private static final String TAG = "MainActivity";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        go_write_button = (Button) findViewById(R.id.go_write_button);
     }
 
     @Override
@@ -46,5 +51,13 @@ public class MainActivity extends AppCompatActivity {
     public void goWriteActivity(View v){
         Intent intent = new Intent(this, WriteDiary.class);
         startActivity(intent);
+    }
+
+    public void getDiary(View v){
+        DiaryTableHelper diaryTableHelper = new DiaryTableHelper(this);
+        List<Diary> diaries = diaryTableHelper.getAllDiary();
+        for(Diary d : diaries){
+            Log.d(TAG, d.toString());
+        }
     }
 }

@@ -2,11 +2,18 @@ package jp.ac.titech.psg.nakano.keyphrasediary.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import jp.ac.titech.psg.nakano.keyphrasediary.model.Diary;
 
 /**
  * Created by nakanomizuki on 15/07/17.
@@ -51,4 +58,37 @@ public class DiaryTableHelper extends SQLiteOpenHelper {
         db.insert(TABLE, null, values);
         Log.d(TAG, "inserted");
     }
+
+    public List<Diary> getAllDiary(){
+        Log.d(TAG, "call getAllDiary");
+        List<Diary> diaries = new ArrayList<Diary>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from " + TABLE + ";", null);
+        boolean isEOF = cursor.moveToFirst();
+        while(isEOF){
+            diaries.add(getDiaryFromCursor(cursor));
+            isEOF = cursor.moveToNext();
+        }
+        cursor.close();
+
+        return  diaries;
+    }
+
+    private Diary getDiaryFromCursor(Cursor c){
+        String title = c.getString(c.getColumnIndex("title"));
+        String content = c.getString(c.getColumnIndex("content"));
+
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        Date cdate, udate;
+        try {
+            cdate = sdf.parse(c.getString(c.getColumnIndex("cdate")));
+            udate = sdf.parse(c.getString(c.getColumnIndex("udate")));
+        }catch (ParseException e){
+            cdate = null;
+            udate = null;
+        }
+
+        return new Diary(title, content, cdate, udate);
+    }
+
 }
