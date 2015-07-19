@@ -14,7 +14,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import jp.ac.titech.psg.nakano.keyphrasememo.activities.WriteMemo;
+import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.WriteMemoFragment;
 
 /**
  * Created by nakanomizuki on 15/07/16.
@@ -27,7 +27,7 @@ public class YahooConnector {
     private static final int NUM = 5;
     private static final String TAG = "YahooConnector";
 
-    public static void getKeyphrase(final String sentence, final WriteMemo writeMemo) {
+    public static void getKeyphrase(final String sentence, final WriteMemoFragment fragment) {
         assert sentence == null;
         assert sentence.equals("");
 
@@ -47,11 +47,13 @@ public class YahooConnector {
                     connection.connect();
                     phrases = parseXML(connection.getInputStream());
                 } catch (IOException e) {
-                    writeMemo.failGettingKeyphrase();
+                    fragment.failGettingKeyphrase();
                 } catch (XmlPullParserException e) {
-                    writeMemo.failGettingKeyphrase();
+                    fragment.failGettingKeyphrase();
                 }
-                writeMemo.arriveKeyphrase(phrases);
+                for(String phrase:phrases){
+                    Log.d(TAG, phrase);
+                }
             }
         }).start();
     }

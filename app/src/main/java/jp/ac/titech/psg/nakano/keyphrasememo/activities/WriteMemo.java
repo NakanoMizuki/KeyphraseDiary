@@ -1,5 +1,6 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -7,29 +8,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import java.util.List;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
-import jp.ac.titech.psg.nakano.keyphrasememo.YahooConnector;
+import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.WriteMemoFragment;
 import jp.ac.titech.psg.nakano.keyphrasememo.database.MemoTableHelper;
 
 
 public class WriteMemo extends AppCompatActivity {
 
     private static final String TAG = "WriteMemo";
-    private EditText titleText;
-    private EditText contentText;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_memo);
 
-        titleText = (EditText) findViewById(R.id.write_title);
-        contentText = (EditText) findViewById(R.id.content_text);
+        // fragment
+        WriteMemoFragment fragment = WriteMemoFragment.newInstance(null);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.add(R.id.write_memo_container, fragment);
+        transaction.commit();
     }
 
     @Override
@@ -60,7 +58,9 @@ public class WriteMemo extends AppCompatActivity {
     }
 
     public void clickSave(View v){
+        EditText titleText = (EditText) findViewById(R.id.fragment_write_memo_title);
         String title = titleText.getText().toString();
+        EditText contentText = (EditText) findViewById(R.id.fragment_write_memo_content);
         String content = contentText.getText().toString();
         Log.d(TAG, "title=" + title);
         Log.d(TAG, "content=" + content);
@@ -68,17 +68,4 @@ public class WriteMemo extends AppCompatActivity {
         memoTableHelper.insert(title, content);
     }
 
-    public void clickGetKeyphrase(View v){
-        String text = contentText.getText().toString();
-        YahooConnector.getKeyphrase(text, this);
-    }
-
-    public void arriveKeyphrase(List<String> keyphrase){
-        for(String k:keyphrase){
-            Log.d(TAG, k);
-        }
-    }
-    public void failGettingKeyphrase(){
-        Toast.makeText(this, "キーフレーズの取得に失敗しました。", Toast.LENGTH_SHORT);
-    }
 }
