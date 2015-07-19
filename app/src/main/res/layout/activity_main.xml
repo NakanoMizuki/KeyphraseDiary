@@ -13,13 +13,13 @@
             android:layout_height="100dp"
             android:id="@+id/go_write_button"
             android:onClick="goWriteActivity"
-            android:text="メモを書く"/>
+            android:text="@string/main_write_memo"/>
         <Button
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:id="@+id/go_read_button"
             android:onClick="goReadActivity"
-            android:text="メモを読む"/>
+            android:text="@string/main_read_memo"/>
     </LinearLayout>
 
 
