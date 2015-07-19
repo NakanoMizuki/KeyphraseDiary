@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
+import jp.ac.titech.psg.nakano.keyphrasememo.database.MemoTableHelper;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
 public class MemoDetail extends AppCompatActivity {
@@ -53,5 +55,10 @@ public class MemoDetail extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void clickDelete(View v){
+        MemoTableHelper tableHelper = new MemoTableHelper(this);
+        tableHelper.deleteMemo(memo.getId());
     }
 }
