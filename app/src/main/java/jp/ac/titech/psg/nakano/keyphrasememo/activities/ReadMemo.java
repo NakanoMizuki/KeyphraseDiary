@@ -23,8 +23,8 @@ public class ReadMemo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_memo);
 
-        List<Memo> diaries = getAllMemo();
-        ArrayAdapter<Memo> adapter = new ArrayAdapter<Memo>(this, R.layout.rowitem, diaries);
+        List<Memo> memos = getAllMemo();
+        ArrayAdapter<Memo> adapter = new ArrayAdapter<Memo>(this, R.layout.rowitem, memos);
         ListView listView = (ListView) findViewById(R.id.memo_list);
         listView.setAdapter(adapter);
     }

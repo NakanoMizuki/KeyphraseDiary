@@ -61,17 +61,17 @@ public class MemoTableHelper extends SQLiteOpenHelper {
 
     public List<Memo> getAllMemo(){
         Log.d(TAG, "call getAllMemo");
-        List<Memo> diaries = new ArrayList<Memo>();
+        List<Memo> memos = new ArrayList<Memo>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE + ";", null);
         boolean isEOF = cursor.moveToFirst();
         while(isEOF){
-            diaries.add(getMemoFromCursor(cursor));
+            memos.add(getMemoFromCursor(cursor));
             isEOF = cursor.moveToNext();
         }
         cursor.close();
 
-        return  diaries;
+        return  memos;
     }
 
     private Memo getMemoFromCursor(Cursor c){
