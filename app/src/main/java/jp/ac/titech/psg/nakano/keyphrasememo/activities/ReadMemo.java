@@ -1,4 +1,4 @@
-package jp.ac.titech.psg.nakano.keyphrasediary;
+package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,29 +9,30 @@ import android.widget.ListView;
 
 import java.util.List;
 
-import jp.ac.titech.psg.nakano.keyphrasediary.database.DiaryTableHelper;
-import jp.ac.titech.psg.nakano.keyphrasediary.model.Diary;
+import jp.ac.titech.psg.nakano.keyphrasememo.R;
+import jp.ac.titech.psg.nakano.keyphrasememo.database.MemoTableHelper;
+import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
 
-public class ReadDiary extends AppCompatActivity {
+public class ReadMemo extends AppCompatActivity {
 
-    private static final String TAG = "ReadDiary";
+    private static final String TAG = "ReadMemo";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_read_diary);
+        setContentView(R.layout.activity_read_memo);
 
-        List<Diary> diaries = getAllDiary();
-        ArrayAdapter<Diary> adapter = new ArrayAdapter<Diary>(this, R.layout.rowitem, diaries);
-        ListView listView = (ListView) findViewById(R.id.diary_list);
+        List<Memo> diaries = getAllMemo();
+        ArrayAdapter<Memo> adapter = new ArrayAdapter<Memo>(this, R.layout.rowitem, diaries);
+        ListView listView = (ListView) findViewById(R.id.memo_list);
         listView.setAdapter(adapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_read_diary, menu);
+        getMenuInflater().inflate(R.menu.menu_read_memo, menu);
         return true;
     }
 
@@ -50,8 +51,8 @@ public class ReadDiary extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public List<Diary> getAllDiary(){
-        DiaryTableHelper diaryTableHelper = new DiaryTableHelper(this);
-        return diaryTableHelper.getAllDiary();
+    public List<Memo> getAllMemo(){
+        MemoTableHelper memoTableHelper = new MemoTableHelper(this);
+        return memoTableHelper.getAllMemo();
     }
 }

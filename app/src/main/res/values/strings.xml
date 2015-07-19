@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">KeyphraseDiary</string>
+    <string name="app_name">KeyphraseMemo</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <string name="title_activity_write_diary">WriteDiary</string>
+    <string name="title_activity_write_memo">WriteMemo</string>
     <string name="reset_button">削除</string>
-    <string name="save_button">日記を保存</string>
+    <string name="save_button">メモを保存</string>
     <string name="write_title_hint">タイトル</string>
-    <string name="write_diary_hint">日記</string>
+    <string name="write_memo_hint">メモ</string>
     <string name="get_keyphrase">タグを自動取得</string>
-    <string name="title_activity_read_diary">ReadDiary</string>
+    <string name="title_activity_read_memo">ReadMemo</string>
 </resources>

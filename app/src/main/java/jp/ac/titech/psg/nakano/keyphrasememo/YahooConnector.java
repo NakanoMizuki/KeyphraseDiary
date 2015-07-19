@@ -1,4 +1,4 @@
-package jp.ac.titech.psg.nakano.keyphrasediary;
+package jp.ac.titech.psg.nakano.keyphrasememo;
 
 import android.util.Log;
 import android.util.Xml;
@@ -14,6 +14,8 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.ac.titech.psg.nakano.keyphrasememo.activities.WriteMemo;
+
 /**
  * Created by nakanomizuki on 15/07/16.
  */
@@ -25,7 +27,7 @@ public class YahooConnector {
     private static final int NUM = 5;
     private static final String TAG = "YahooConnector";
 
-    public static void getKeyphrase(final String sentence, final WriteDiary writeDiary) {
+    public static void getKeyphrase(final String sentence, final WriteMemo writeMemo) {
         assert sentence == null;
         assert sentence.equals("");
 
@@ -45,11 +47,11 @@ public class YahooConnector {
                     connection.connect();
                     phrases = parseXML(connection.getInputStream());
                 } catch (IOException e) {
-                    writeDiary.failGettingKeyphrase();
+                    writeMemo.failGettingKeyphrase();
                 } catch (XmlPullParserException e) {
-                    writeDiary.failGettingKeyphrase();
+                    writeMemo.failGettingKeyphrase();
                 }
-                writeDiary.arriveKeyphrase(phrases);
+                writeMemo.arriveKeyphrase(phrases);
             }
         }).start();
     }

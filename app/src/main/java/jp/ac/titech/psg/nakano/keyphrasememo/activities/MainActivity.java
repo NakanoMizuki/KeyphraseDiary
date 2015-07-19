@@ -1,4 +1,4 @@
-package jp.ac.titech.psg.nakano.keyphrasediary;
+package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import jp.ac.titech.psg.nakano.keyphrasememo.R;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,12 +45,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goWriteActivity(View v){
-        Intent intent = new Intent(this, WriteDiary.class);
+        Intent intent = new Intent(this, WriteMemo.class);
         startActivity(intent);
     }
 
     public void goReadActivity(View v){
-        Intent intent = new Intent(this, ReadDiary.class);
+        Intent intent = new Intent(this, ReadMemo.class);
         startActivity(intent);
     }
 
