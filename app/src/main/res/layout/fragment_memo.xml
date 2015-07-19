@@ -5,6 +5,10 @@
     tools:context="jp.ac.titech.psg.nakano.keyphrasememo.activities.MemoFragment">
 
     <TextView
+        android:id="@+id/memo_fragment_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
         android:id="@+id/memo_fragment_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
