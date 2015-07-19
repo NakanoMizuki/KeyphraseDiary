@@ -1,11 +1,14 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by nakanomizuki on 15/07/17.
  */
-public class Memo {
+public class Memo implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     private final String title;
     private final String content;

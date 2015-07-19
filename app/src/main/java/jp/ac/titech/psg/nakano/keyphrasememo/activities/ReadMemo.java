@@ -1,9 +1,12 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -18,15 +21,18 @@ public class ReadMemo extends AppCompatActivity {
 
     private static final String TAG = "ReadMemo";
 
+    private List<Memo> memos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_memo);
 
-        List<Memo> memos = getAllMemo();
+        memos = getAllMemo();
         ArrayAdapter<Memo> adapter = new ArrayAdapter<Memo>(this, R.layout.rowitem, memos);
         ListView listView = (ListView) findViewById(R.id.memo_list);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new MyListener(this));
     }
 
     @Override
@@ -54,5 +60,22 @@ public class ReadMemo extends AppCompatActivity {
     public List<Memo> getAllMemo(){
         MemoTableHelper memoTableHelper = new MemoTableHelper(this);
         return memoTableHelper.getAllMemo();
+    }
+
+
+    // Listener for clicking listView item
+    class MyListener implements AdapterView.OnItemClickListener{
+        private final ReadMemo activity;
+
+        public MyListener(ReadMemo activity) {
+            this.activity = activity;
+        }
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View v, int position, long id){
+            Intent intent = new Intent(activity, MemoDetail.class);
+            intent.putExtra("memo", memos.get(position));
+            activity.startActivity(intent);
+        }
     }
 }

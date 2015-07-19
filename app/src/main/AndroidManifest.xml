@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="jp.ac.titech.psg.nakano.keyphrasememo.activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,12 +19,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="jp.ac.titech.psg.nakano.keyphrasememo.activities.WriteMemo"
+            android:name=".activities.WriteMemo"
             android:label="@string/title_activity_write_memo" >
         </activity>
         <activity
-            android:name="jp.ac.titech.psg.nakano.keyphrasememo.activities.ReadMemo"
+            android:name=".activities.ReadMemo"
             android:label="@string/title_activity_read_memo" >
+        </activity>
+        <activity
+            android:name=".activities.MemoDetail"
+            android:label="@string/title_activity_memo_detail" >
         </activity>
     </application>
 
