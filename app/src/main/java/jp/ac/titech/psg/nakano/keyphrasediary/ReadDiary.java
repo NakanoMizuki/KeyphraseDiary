@@ -2,9 +2,10 @@ package jp.ac.titech.psg.nakano.keyphrasediary;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.List;
 
@@ -21,7 +22,10 @@ public class ReadDiary extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_diary);
 
-        printAllDiary();
+        List<Diary> diaries = getAllDiary();
+        ArrayAdapter<Diary> adapter = new ArrayAdapter<Diary>(this, R.layout.rowitem, diaries);
+        ListView listView = (ListView) findViewById(R.id.diary_list);
+        listView.setAdapter(adapter);
     }
 
     @Override
@@ -46,11 +50,8 @@ public class ReadDiary extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void printAllDiary(){
+    public List<Diary> getAllDiary(){
         DiaryTableHelper diaryTableHelper = new DiaryTableHelper(this);
-        List<Diary> diaries = diaryTableHelper.getAllDiary();
-        for(Diary d : diaries){
-            Log.d(TAG, d.toString());
-        }
+        return diaryTableHelper.getAllDiary();
     }
 }
