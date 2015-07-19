@@ -32,7 +32,7 @@ public class ReadMemo extends AppCompatActivity {
         ArrayAdapter<Memo> adapter = new ArrayAdapter<Memo>(this, R.layout.rowitem, memos);
         ListView listView = (ListView) findViewById(R.id.memo_list);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new MyListener(this));
+        listView.setOnItemClickListener(new MyListener());
     }
 
     @Override
@@ -65,17 +65,11 @@ public class ReadMemo extends AppCompatActivity {
 
     // Listener for clicking listView item
     class MyListener implements AdapterView.OnItemClickListener{
-        private final ReadMemo activity;
-
-        public MyListener(ReadMemo activity) {
-            this.activity = activity;
-        }
-
         @Override
         public void onItemClick(AdapterView<?> parent, View v, int position, long id){
-            Intent intent = new Intent(activity, MemoDetail.class);
+            Intent intent = new Intent(ReadMemo.this, MemoDetail.class);
             intent.putExtra("memo", memos.get(position));
-            activity.startActivity(intent);
+            startActivity(intent);
         }
     }
 }

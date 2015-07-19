@@ -1,19 +1,24 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
+import android.app.AlertDialog;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
+import jp.ac.titech.psg.nakano.keyphrasememo.database.MemoTableHelper;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
 public class MemoDetail extends AppCompatActivity {
 
     private static final String TAG = "MemoDetail";
     private Memo memo;
+    private AlertDialog deleteDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +27,19 @@ public class MemoDetail extends AppCompatActivity {
 
         memo = (Memo) getIntent().getSerializableExtra("memo");
         Log.d(TAG, memo.toString());
+
+        // dialog for deleteButton
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.delete_dialog_message);
+        builder.setPositiveButton(R.string.delete_dialog_positive, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                MemoTableHelper tableHelper = new MemoTableHelper(MemoDetail.this);
+                tableHelper.deleteMemo(memo.getId());
+            }
+        });
+        builder.setNegativeButton(R.string.delete_dialog_negative, null);
+        deleteDialog = builder.create();
 
         // fragment
         MemoFragment fragment = new MemoFragment();
@@ -53,5 +71,9 @@ public class MemoDetail extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void clickDelete(View v){
+        deleteDialog.show();
     }
 }

@@ -59,6 +59,11 @@ public class MemoTableHelper extends SQLiteOpenHelper {
         Log.d(TAG, "inserted");
     }
 
+    public void deleteMemo(Long id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE, "id = " + String.valueOf(id), null);
+    }
+
     public List<Memo> getAllMemo(){
         Log.d(TAG, "call getAllMemo");
         List<Memo> memos = new ArrayList<Memo>();
@@ -75,6 +80,7 @@ public class MemoTableHelper extends SQLiteOpenHelper {
     }
 
     private Memo getMemoFromCursor(Cursor c){
+        Long id = c.getLong(c.getColumnIndex("id"));
         String title = c.getString(c.getColumnIndex("title"));
         String content = c.getString(c.getColumnIndex("content"));
 
@@ -88,7 +94,7 @@ public class MemoTableHelper extends SQLiteOpenHelper {
             udate = null;
         }
 
-        return new Memo(title, content, cdate, udate);
+        return new Memo(id, title, content, cdate, udate);
     }
 
 }

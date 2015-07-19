@@ -38,6 +38,7 @@ public class MemoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_memo, container, false);
         if (getArguments() != null) {
             Memo memo = (Memo) getArguments().getSerializable(ARG_PARAM);
+            ((TextView) view.findViewById(R.id.memo_fragment_id)).setText(memo.getId() + "");
             ((TextView) view.findViewById(R.id.memo_fragment_title)).setText(memo.getTitle());
         }
         return view;
