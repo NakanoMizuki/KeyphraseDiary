@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jp.ac.titech.psg.nakano.keyphrasediary" >
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -22,6 +21,10 @@
         <activity
             android:name=".WriteDiary"
             android:label="@string/title_activity_write_diary" >
+        </activity>
+        <activity
+            android:name=".ReadDiary"
+            android:label="@string/title_activity_read_diary" >
         </activity>
     </application>
 

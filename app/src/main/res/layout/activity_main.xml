@@ -18,7 +18,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:id="@+id/go_read_button"
-            android:onClick="getDiary"
+            android:onClick="goReadActivity"
             android:text="日記を読む"/>
     </LinearLayout>
 

@@ -1,29 +1,37 @@
 package jp.ac.titech.psg.nakano.keyphrasediary;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.List;
+
+import jp.ac.titech.psg.nakano.keyphrasediary.database.DiaryTableHelper;
+import jp.ac.titech.psg.nakano.keyphrasediary.model.Diary;
 
 
-public class MainActivity extends AppCompatActivity {
+public class ReadDiary extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
-
+    private static final String TAG = "ReadDiary";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_read_diary);
 
+        List<Diary> diaries = getAllDiary();
+        ArrayAdapter<Diary> adapter = new ArrayAdapter<Diary>(this, R.layout.rowitem, diaries);
+        ListView listView = (ListView) findViewById(R.id.diary_list);
+        listView.setAdapter(adapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_read_diary, menu);
         return true;
     }
 
@@ -42,14 +50,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void goWriteActivity(View v){
-        Intent intent = new Intent(this, WriteDiary.class);
-        startActivity(intent);
+    public List<Diary> getAllDiary(){
+        DiaryTableHelper diaryTableHelper = new DiaryTableHelper(this);
+        return diaryTableHelper.getAllDiary();
     }
-
-    public void goReadActivity(View v){
-        Intent intent = new Intent(this, ReadDiary.class);
-        startActivity(intent);
-    }
-
 }
