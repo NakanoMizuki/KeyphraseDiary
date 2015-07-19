@@ -15,4 +15,8 @@
     <string name="get_keyphrase">タグを自動取得</string>
     <string name="title_activity_read_memo">ReadMemo</string>
     <string name="title_activity_memo_detail">MemoDetail</string>
+
+
+    <string name="memo_fragment_cDate">作成日時：</string>
+    <string name="memo_fragment_uDate">更新日時：</string>
 </resources>
