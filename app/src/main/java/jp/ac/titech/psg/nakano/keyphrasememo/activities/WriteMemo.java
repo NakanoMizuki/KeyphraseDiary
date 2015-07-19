@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,11 +19,8 @@ import jp.ac.titech.psg.nakano.keyphrasememo.database.MemoTableHelper;
 public class WriteMemo extends AppCompatActivity {
 
     private static final String TAG = "WriteMemo";
-    private Button reset_button;
-    private Button save_button;
     private EditText titleText;
     private EditText contentText;
-    private Button get_keyphrase_button;
 
 
     @Override
@@ -32,11 +28,8 @@ public class WriteMemo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_memo);
 
-        reset_button = (Button) findViewById(R.id.reset_button);
-        save_button = (Button) findViewById(R.id.save_button);
         titleText = (EditText) findViewById(R.id.write_title);
         contentText = (EditText) findViewById(R.id.content_text);
-        get_keyphrase_button = (Button) findViewById(R.id.get_keyphrase_button);
     }
 
     @Override
