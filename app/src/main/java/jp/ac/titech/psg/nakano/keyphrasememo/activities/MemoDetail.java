@@ -1,5 +1,6 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,6 +22,15 @@ public class MemoDetail extends AppCompatActivity {
 
         memo = (Memo) getIntent().getSerializableExtra("memo");
         Log.d(TAG, memo.toString());
+
+        // fragment
+        MemoFragment fragment = new MemoFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(MemoFragment.ARG_PARAM, memo);
+        fragment.setArguments(bundle);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.add(R.id.memo_detail_container, fragment);
+        transaction.commit();
     }
 
     @Override
