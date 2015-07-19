@@ -11,7 +11,7 @@ import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
 public class MemoDetail extends AppCompatActivity {
 
-    private static final String TAG = "MwmoDetail";
+    private static final String TAG = "MemoDetail";
     private Memo memo;
 
     @Override

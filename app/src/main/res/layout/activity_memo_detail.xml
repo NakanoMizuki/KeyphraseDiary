@@ -6,7 +6,10 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="jp.ac.titech.psg.nakano.keyphrasememo.activities.MemoDetail">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <fragment
+        android:id="@+id/memo_detail_fragment"
+        android:name="jp.ac.titech.psg.nakano.keyphrasememo.activities.MemoFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>
