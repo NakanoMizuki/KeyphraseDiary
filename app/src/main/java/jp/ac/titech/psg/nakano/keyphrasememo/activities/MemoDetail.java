@@ -1,18 +1,26 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
+import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
-public class MemoDetail extends ActionBarActivity {
+public class MemoDetail extends AppCompatActivity {
+
+    private static final String TAG = "MwmoDetail";
+    private Memo memo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memo_detail);
+
+        memo = (Memo) getIntent().getSerializableExtra("memo");
+        Log.d(TAG, memo.toString());
     }
 
     @Override
