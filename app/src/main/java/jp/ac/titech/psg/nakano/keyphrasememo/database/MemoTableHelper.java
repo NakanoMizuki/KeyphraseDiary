@@ -1,4 +1,4 @@
-package jp.ac.titech.psg.nakano.keyphrasediary.database;
+package jp.ac.titech.psg.nakano.keyphrasememo.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -13,16 +13,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import jp.ac.titech.psg.nakano.keyphrasediary.model.Diary;
+import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
 /**
  * Created by nakanomizuki on 15/07/17.
  */
-public class DiaryTableHelper extends SQLiteOpenHelper {
+public class MemoTableHelper extends SQLiteOpenHelper {
 
-    private static final String TAG = "DiaryTableHelper";
-    private static final String DB_NAME = "diary.db";
-    private static final String TABLE = "diary";
+    private static final String TAG = "MemoTableHelper";
+    private static final String DB_NAME = "memo.db";
+    private static final String TABLE = "memo";
     private static final int DB_VERSION = 1;
     private static final String CREATE_TABLE = "create table " + TABLE + "("
             + "id integer primary key autoincrement,"
@@ -32,7 +32,7 @@ public class DiaryTableHelper extends SQLiteOpenHelper {
             + "udate text not null"
             + ");";
 
-    public DiaryTableHelper(Context context){
+    public MemoTableHelper(Context context){
         super(context, DB_NAME, null, DB_VERSION);
     }
 
@@ -59,22 +59,22 @@ public class DiaryTableHelper extends SQLiteOpenHelper {
         Log.d(TAG, "inserted");
     }
 
-    public List<Diary> getAllDiary(){
-        Log.d(TAG, "call getAllDiary");
-        List<Diary> diaries = new ArrayList<Diary>();
+    public List<Memo> getAllMemo(){
+        Log.d(TAG, "call getAllMemo");
+        List<Memo> memos = new ArrayList<Memo>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE + ";", null);
         boolean isEOF = cursor.moveToFirst();
         while(isEOF){
-            diaries.add(getDiaryFromCursor(cursor));
+            memos.add(getMemoFromCursor(cursor));
             isEOF = cursor.moveToNext();
         }
         cursor.close();
 
-        return  diaries;
+        return  memos;
     }
 
-    private Diary getDiaryFromCursor(Cursor c){
+    private Memo getMemoFromCursor(Cursor c){
         String title = c.getString(c.getColumnIndex("title"));
         String content = c.getString(c.getColumnIndex("content"));
 
@@ -88,7 +88,7 @@ public class DiaryTableHelper extends SQLiteOpenHelper {
             udate = null;
         }
 
-        return new Diary(title, content, cdate, udate);
+        return new Memo(title, content, cdate, udate);
     }
 
 }

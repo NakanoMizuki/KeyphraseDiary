@@ -1,4 +1,4 @@
-package jp.ac.titech.psg.nakano.keyphrasediary;
+package jp.ac.titech.psg.nakano.keyphrasememo;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

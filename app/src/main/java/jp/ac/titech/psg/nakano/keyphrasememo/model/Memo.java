@@ -1,18 +1,18 @@
-package jp.ac.titech.psg.nakano.keyphrasediary.model;
+package jp.ac.titech.psg.nakano.keyphrasememo.model;
 
 import java.util.Date;
 
 /**
  * Created by nakanomizuki on 15/07/17.
  */
-public class Diary {
+public class Memo {
 
     private final String title;
     private final String content;
     private final Date cdate;
     private final Date udate;
 
-    public Diary(String title, String content, Date cdate, Date udate){
+    public Memo(String title, String content, Date cdate, Date udate){
         this.title = title;
         this.content = content;
         this.cdate = cdate;
