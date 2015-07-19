@@ -14,4 +14,5 @@
     <string name="write_memo_hint">メモ</string>
     <string name="get_keyphrase">タグを自動取得</string>
     <string name="title_activity_read_memo">ReadMemo</string>
+    <string name="title_activity_memo_detail">MemoDetail</string>
 </resources>
