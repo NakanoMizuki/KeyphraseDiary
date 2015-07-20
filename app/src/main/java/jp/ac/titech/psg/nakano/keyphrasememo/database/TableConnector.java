@@ -49,6 +49,10 @@ public class TableConnector {
         }
         MemoTableHelper memoTableHelper = new MemoTableHelper(context);
         memoTableHelper.update(memoId, title, content);
+        TagTableHelper tagTableHelper = new TagTableHelper(context);
+        Set<Long> tagIds = tagTableHelper.updateTag(tags);
+        MapTableHelper mapTableHelper = new MapTableHelper(context);
+        mapTableHelper.update(memoId, tagIds);
     }
 
     public List<Memo> getAllMemo(){

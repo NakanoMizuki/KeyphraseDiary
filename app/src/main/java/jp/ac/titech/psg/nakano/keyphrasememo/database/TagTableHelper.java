@@ -8,7 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Tag;
 
@@ -23,7 +25,7 @@ public class TagTableHelper extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
     private static final String CREATE_TABLE = "create table " + TABLE +"("
             + "id integer primary key autoincrement,"
-            + "name text not null"
+            + "name text unique not null"
             + ");";
 
     public TagTableHelper(Context context){
@@ -52,9 +54,32 @@ public class TagTableHelper extends SQLiteOpenHelper {
     public Tag getTag(long tagId){
         Log.d(TAG, "call getTag(tagId=" + tagId + ")");
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("select id, name from " + TABLE + "wher id = " + tagId, null);
+        Cursor cursor = db.rawQuery("select id, name from " + TABLE + "where id = " + tagId, null);
         cursor.moveToFirst();
         return createTagFromCursor(cursor);
+    }
+
+    // insert tags haven't been existed
+    // return set of tagId of all tags of params
+    public Set<Long> updateTag(List<String> tags){
+        Set<Long> tagIds = new HashSet<Long>();
+        SQLiteDatabase db = getWritableDatabase();
+        for(String tagName:tags){
+            Cursor c = db.rawQuery("select id from " + TABLE + " where name = ? " , new String[] {tagName});
+            long id;
+            if(c.moveToFirst()){
+                id = c.getLong(c.getColumnIndex("id"));
+            }else{
+                ContentValues values = new ContentValues();
+                values.put("name", tagName);
+                id = db.insert(TABLE, null, values);
+                Log.d(TAG, "insert new tag(name" + tagName + ")");
+            }
+            tagIds.add(id);
+            Log.d(TAG, "update:add tagId=" + id);
+        }
+
+        return tagIds;
     }
 
     public List<Tag> getTags(List<Long> tagIds){
@@ -78,6 +103,7 @@ public class TagTableHelper extends SQLiteOpenHelper {
         cursor.close();
         return tags;
     }
+
     private Tag createTagFromCursor(Cursor c){
         long tagId = c.getLong(c.getColumnIndex("id"));
         String name = c.getString(c.getColumnIndex("name"));
