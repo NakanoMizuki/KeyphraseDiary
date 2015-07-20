@@ -1,9 +1,12 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.model;
 
+import java.io.Serializable;
+
 /**
  * Created by nakanomizuki on 15/07/20.
  */
-public class Tag {
+public class Tag implements Serializable{
+    private static final long serialVersionUID = 1L;
 
     private final long id;
     private final String name;
