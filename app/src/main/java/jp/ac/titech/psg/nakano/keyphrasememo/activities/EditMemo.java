@@ -1,18 +1,44 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import jp.ac.titech.psg.nakano.keyphrasememo.R;
+import com.astuetz.PagerSlidingTabStrip;
 
-public class EditMemo extends ActionBarActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+import jp.ac.titech.psg.nakano.keyphrasememo.R;
+import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.MyFragmentPagerAdapter;
+import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
+import jp.ac.titech.psg.nakano.keyphrasememo.model.Tag;
+
+public class EditMemo extends AbstractWriteActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_memo);
+
+        // set default value
+        Memo memo = (Memo) getIntent().getSerializableExtra("memo");
+        setMemoTitle(memo.getTitle());
+        setMemoContent(memo.getContent());
+        List<String> tagStrings = new ArrayList<String>();
+        for (Tag tag : memo.getTags()){
+            tagStrings.add(tag.getName());
+        }
+        setTags(tagStrings);
+
+        // fragment
+        ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
+        pager = viewPager;
+        MyFragmentPagerAdapter pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(pagerAdapter);
+        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        tabs.setViewPager(viewPager);
     }
 
     @Override
