@@ -11,18 +11,12 @@ import android.widget.EditText;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
 import jp.ac.titech.psg.nakano.keyphrasememo.activities.AbstractWriteActivity;
-import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
 
 public class WriteMemoFragment extends android.support.v4.app.Fragment {
-    private static final String ARG_PARAM = "memo";
 
-    public static WriteMemoFragment newInstance(Memo memo) {
+    public static WriteMemoFragment newInstance() {
         WriteMemoFragment fragment = new WriteMemoFragment();
-        if(memo == null) return  fragment;
-        Bundle args = new Bundle();
-        args.putSerializable(ARG_PARAM, memo);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -30,15 +24,11 @@ public class WriteMemoFragment extends android.support.v4.app.Fragment {
         // Required empty public constructor
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_write_memo, container, false);
-        if (getArguments() != null) {
-            Memo memo = (Memo) getArguments().getSerializable(ARG_PARAM);
-            ((EditText) view.findViewById(R.id.fragment_write_memo_title)).setText(memo.getTitle());
-            ((EditText) view.findViewById(R.id.fragment_write_memo_content)).setText(memo.getContent());
-        }
         return view;
     }
 
@@ -46,6 +36,12 @@ public class WriteMemoFragment extends android.support.v4.app.Fragment {
     public void onStart(){
         super.onStart();
         final AbstractWriteActivity parent = (AbstractWriteActivity) getActivity();
+
+        // set default value
+        ((EditText) parent.findViewById(R.id.fragment_write_memo_title)).setText(parent.getMemoTitle());
+        ((EditText) parent.findViewById(R.id.fragment_write_memo_content)).setText(parent.getMemoContent());
+
+        // set listener
         EditText editTitle = (EditText) parent.findViewById(R.id.fragment_write_memo_title);
         editTitle.addTextChangedListener(new TextWatcher() {
             @Override
