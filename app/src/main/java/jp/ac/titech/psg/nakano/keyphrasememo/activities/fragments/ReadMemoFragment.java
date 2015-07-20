@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
+import jp.ac.titech.psg.nakano.keyphrasememo.model.Tag;
 
 public class ReadMemoFragment extends Fragment {
     public static final String ARG_PARAM = "memo";
@@ -40,6 +41,11 @@ public class ReadMemoFragment extends Fragment {
             Memo memo = (Memo) getArguments().getSerializable(ARG_PARAM);
             ((TextView) view.findViewById(R.id.read_memo_fragment_id)).setText(memo.getId() + "");
             ((TextView) view.findViewById(R.id.read_memo_fragment_title)).setText(memo.getTitle());
+            String tagText = "";
+            for (Tag tag : memo.getTags()){
+                tagText += tag.getName() + ",";
+            }
+            ((TextView) view.findViewById(R.id.read_memo_fragment_tag)).setText(tagText);
         }
         return view;
     }

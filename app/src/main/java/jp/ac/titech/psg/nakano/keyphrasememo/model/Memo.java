@@ -2,6 +2,7 @@ package jp.ac.titech.psg.nakano.keyphrasememo.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by nakanomizuki on 15/07/17.
@@ -15,6 +16,7 @@ public class Memo implements Serializable{
     private final String content;
     private final Date cdate;
     private final Date udate;
+    private List<Tag> tags;
 
     public Memo(Long id,String title, String content, Date cdate, Date udate){
         this.id = id;
@@ -45,6 +47,14 @@ public class Memo implements Serializable{
 
     public Date getUpdatedDate() {
         return udate;
+    }
+
+    public List<Tag> getTags(){
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags){
+        this.tags = tags;
     }
 
     @Override
