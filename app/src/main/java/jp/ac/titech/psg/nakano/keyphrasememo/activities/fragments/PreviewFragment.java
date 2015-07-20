@@ -3,7 +3,6 @@ package jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +63,9 @@ public class PreviewFragment extends android.support.v4.app.Fragment {
                 String title = parent.getMemoTitle();
                 TextView titleView = (TextView) parent.findViewById(R.id.preview_fragment_title);
                 titleView.setText(title);
-                Log.d("preview", "onpageselected title=" + title);
+                String content = parent.getMemoContent();
+                TextView contentView = (TextView) parent.findViewById(R.id.preview_fragment_content);
+                contentView.setText(content);
             }
 
             @Override
