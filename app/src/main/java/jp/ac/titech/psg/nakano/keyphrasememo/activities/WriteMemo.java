@@ -9,9 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
 import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.WriteMemoFragment;
-import jp.ac.titech.psg.nakano.keyphrasememo.database.MemoTableHelper;
+import jp.ac.titech.psg.nakano.keyphrasememo.database.TableConnector;
 
 
 public class WriteMemo extends AppCompatActivity {
@@ -62,10 +65,13 @@ public class WriteMemo extends AppCompatActivity {
         String title = titleText.getText().toString();
         EditText contentText = (EditText) findViewById(R.id.fragment_write_memo_content);
         String content = contentText.getText().toString();
-        Log.d(TAG, "title=" + title);
-        Log.d(TAG, "content=" + content);
-        MemoTableHelper memoTableHelper = new MemoTableHelper(this);
-        memoTableHelper.insert(title, content);
+        EditText tagsText = (EditText) findViewById(R.id.fragment_write_memo_tag);
+        Set<String> tags = new HashSet<String>();
+        for(String tag: tagsText.getText().toString().split(",")) {
+            tags.add(tag);
+        }
+
+        TableConnector.insertMemo(this, title, content, tags);
     }
 
 }
