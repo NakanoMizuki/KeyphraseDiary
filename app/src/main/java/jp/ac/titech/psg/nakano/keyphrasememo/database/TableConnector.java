@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
+import jp.ac.titech.psg.nakano.keyphrasememo.model.Tag;
 
 /**
  * Created by nakanomizuki on 15/07/20.
@@ -42,7 +43,15 @@ public class TableConnector {
 
     public List<Memo> getAllMemo(){
         MemoTableHelper memoTableHelper = new MemoTableHelper(context);
-        return memoTableHelper.getAllMemo();
+        List<Memo> memos = memoTableHelper.getAllMemo();
+        TagTableHelper tagTableHelper = new TagTableHelper(context);
+        MapTableHelper mapTableHelper = new MapTableHelper(context);
+        for(Memo memo: memos){
+            List<Long> tagIds = mapTableHelper.getTagIds(memo.getId());
+            List<Tag> tags = tagTableHelper.getTags(tagIds);
+            memo.setTags(tags);
+        }
+        return memos;
     }
 
 }
