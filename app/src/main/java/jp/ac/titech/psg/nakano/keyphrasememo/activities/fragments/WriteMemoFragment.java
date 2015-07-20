@@ -15,7 +15,7 @@ import jp.ac.titech.psg.nakano.keyphrasememo.R;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
 
-public class WriteMemoFragment extends Fragment {
+public class WriteMemoFragment extends android.support.v4.app.Fragment {
 
     private static final String TAG = "WriteMemoFragment";
     private static final String ARG_PARAM = "memo";

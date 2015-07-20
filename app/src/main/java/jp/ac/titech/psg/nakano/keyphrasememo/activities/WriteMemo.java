@@ -1,7 +1,7 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -9,11 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.astuetz.PagerSlidingTabStrip;
+
 import java.util.HashSet;
 import java.util.Set;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
-import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.WriteMemoFragment;
+import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.MyFragmentPagerAdapter;
 import jp.ac.titech.psg.nakano.keyphrasememo.database.TableConnector;
 
 
@@ -27,10 +29,11 @@ public class WriteMemo extends AppCompatActivity {
         setContentView(R.layout.activity_write_memo);
 
         // fragment
-        WriteMemoFragment fragment = WriteMemoFragment.newInstance(null);
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.write_memo_container, fragment);
-        transaction.commit();
+        ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
+        MyFragmentPagerAdapter pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(pagerAdapter);
+        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        tabs.setViewPager(viewPager);
     }
 
     @Override
