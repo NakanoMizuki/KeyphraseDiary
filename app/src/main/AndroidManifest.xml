@@ -30,6 +30,10 @@
             android:name=".activities.MemoDetail"
             android:label="@string/title_activity_memo_detail" >
         </activity>
+        <activity
+            android:name=".activities.AbstractWriteActivity"
+            android:label="@string/title_activity_abstract_write_actitivity" >
+        </activity>
     </application>
 
 </manifest>

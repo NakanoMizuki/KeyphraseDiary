@@ -1,7 +1,6 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,12 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
+import jp.ac.titech.psg.nakano.keyphrasememo.activities.AbstractWriteActivity;
 
 public class WriteTagFragment extends android.support.v4.app.Fragment {
     private static final String TAG = "WriteTagFragment";
     private static final String ARG_PARAM = "tag";
 
-    private Activity parent;
+    private AbstractWriteActivity parent;
     private String[] tags;
 
     public static WriteTagFragment newInstance(String[] tags) {
@@ -39,7 +39,7 @@ public class WriteTagFragment extends android.support.v4.app.Fragment {
     @Override
     public void onStart(){
         super.onStart();
-        parent = getActivity();
+        parent = (AbstractWriteActivity) getActivity();
 
         // set listener
         Button getTagButton = (Button) parent.findViewById(R.id.fragment_write_memo_getTag);
@@ -54,6 +54,7 @@ public class WriteTagFragment extends android.support.v4.app.Fragment {
                 task.execute(content);
             }
         });
+
     }
 
     @Override

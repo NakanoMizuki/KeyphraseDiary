@@ -2,7 +2,6 @@ package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +18,7 @@ import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.MyFragmentPage
 import jp.ac.titech.psg.nakano.keyphrasememo.database.TableConnector;
 
 
-public class WriteMemo extends AppCompatActivity {
+public class WriteMemo extends AbstractWriteActivity {
 
     private static final String TAG = "WriteMemo";
 
@@ -30,6 +29,7 @@ public class WriteMemo extends AppCompatActivity {
 
         // fragment
         ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
+        pager = viewPager;
         MyFragmentPagerAdapter pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);

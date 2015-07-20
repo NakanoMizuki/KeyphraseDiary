@@ -2,12 +2,15 @@ package jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments;
 
 
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
+import jp.ac.titech.psg.nakano.keyphrasememo.activities.AbstractWriteActivity;
 
 public class PreviewFragment extends android.support.v4.app.Fragment {
     private static final String ARG_PARAM1 = "param1";
@@ -42,8 +45,32 @@ public class PreviewFragment extends android.support.v4.app.Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_preview, container, false);
+        View view = inflater.inflate(R.layout.fragment_preview, container, false);
+
+        return view;
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        final AbstractWriteActivity parent = (AbstractWriteActivity) getActivity();
+        parent.getViewPager().setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                String title = parent.getMemoTitle();
+                TextView titleView = (TextView) parent.findViewById(R.id.preview_fragment_title);
+                titleView.setText(title);
+                Log.d("preview", "onpageselected title=" + title);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
     }
 
 
