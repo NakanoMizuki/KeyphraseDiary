@@ -34,10 +34,6 @@ public class WriteTagFragment extends android.support.v4.app.Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            tags = (String[]) getArguments().getSerializable(ARG_PARAM);
-        }
-
     }
 
     @Override
@@ -64,6 +60,10 @@ public class WriteTagFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        if (getArguments() != null) {
+            tags = (String[]) getArguments().getSerializable(ARG_PARAM);
+        }
         return inflater.inflate(R.layout.fragment_write_tag, container, false);
     }
 
