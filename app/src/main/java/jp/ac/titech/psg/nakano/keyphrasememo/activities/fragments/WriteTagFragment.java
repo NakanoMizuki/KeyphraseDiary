@@ -19,16 +19,11 @@ import jp.ac.titech.psg.nakano.keyphrasememo.activities.AbstractWriteActivity;
 
 public class WriteTagFragment extends android.support.v4.app.Fragment {
     private static final String TAG = "WriteTagFragment";
-    private static final String ARG_PARAM = "tag";
 
     private AbstractWriteActivity parent;
-    private List<String> tags;
 
-    public static WriteTagFragment newInstance(String[] tags) {
+    public static WriteTagFragment newInstance() {
         WriteTagFragment fragment = new WriteTagFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(ARG_PARAM, tags);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -46,6 +41,16 @@ public class WriteTagFragment extends android.support.v4.app.Fragment {
         super.onStart();
         parent = (AbstractWriteActivity) getActivity();
 
+        // set default value
+        List<String> tags = parent.getTags();
+        if(tags != null && !tags.isEmpty()) {
+            String str = "";
+            for (String s : tags) {
+                str += s + ",";
+            }
+            ((EditText) parent.findViewById(R.id.fragment_write_memo_tag)).setText(str);
+        }
+
         // set listener
         Button getTagButton = (Button) parent.findViewById(R.id.fragment_write_memo_getTag);
         getTagButton.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +63,6 @@ public class WriteTagFragment extends android.support.v4.app.Fragment {
                 task.execute(content);
             }
         });
-
         EditText tagEdit = (EditText) parent.findViewById(R.id.fragment_write_memo_tag);
         tagEdit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -71,7 +75,6 @@ public class WriteTagFragment extends android.support.v4.app.Fragment {
                 parent.setTags(tags);
             }
         });
-
     }
 
     @Override

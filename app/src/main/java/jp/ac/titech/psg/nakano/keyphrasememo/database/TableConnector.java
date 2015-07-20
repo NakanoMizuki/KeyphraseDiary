@@ -41,6 +41,20 @@ public class TableConnector {
         }
     }
 
+    public void updateMemo(long memoId, String title, String content, List<String> tags){
+        Log.d(TAG, "updateMemo");
+        Log.d(TAG, "title=" + title + ", content=" + content);
+        for(String tag:tags){
+            Log.d(TAG, "tag=" + tag);
+        }
+        MemoTableHelper memoTableHelper = new MemoTableHelper(context);
+        memoTableHelper.update(memoId, title, content);
+        TagTableHelper tagTableHelper = new TagTableHelper(context);
+        Set<Long> tagIds = tagTableHelper.updateTag(tags);
+        MapTableHelper mapTableHelper = new MapTableHelper(context);
+        mapTableHelper.update(memoId, tagIds);
+    }
+
     public List<Memo> getAllMemo(){
         MemoTableHelper memoTableHelper = new MemoTableHelper(context);
         List<Memo> memos = memoTableHelper.getAllMemo();

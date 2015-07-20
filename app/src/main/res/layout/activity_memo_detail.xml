@@ -12,6 +12,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete Memo"/>
+
+    <Button
+        android:onClick="clickEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Memo"/>
+
     <LinearLayout
         android:id="@+id/memo_detail_container"
         android:layout_width="match_parent"

@@ -49,14 +49,26 @@ public class MemoTableHelper extends SQLiteOpenHelper {
     public long insert(String title, String content){
         Log.d(TAG, "call insert(title=" + title + ", content=" + content + ")");
         Date date = new Date();
-        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("title", title);
         values.put("content", content);
         values.put("cdate", date.toString());
         values.put("udate", date.toString());
+        SQLiteDatabase db = this.getWritableDatabase();
         Log.d(TAG, "inserted");
         return db.insert(TABLE, null, values);
+    }
+
+    public void update(long memoId, String title, String content){
+        Log.d(TAG, "call update(memoId=" + memoId + ", title=" + title + ", content=" + content + ")");
+        Date uDate = new Date();
+        ContentValues values = new ContentValues();
+        values.put("title", title);
+        values.put("content", content);
+        values.put("udate", uDate.toString());
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.update(TABLE, values, "id=?", new String[]{String.valueOf(memoId)});
+        Log.d(TAG, "updated");
     }
 
     public void deleteMemo(Long id){

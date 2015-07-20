@@ -26,4 +26,6 @@
     <string name="memo_fragment_cDate">作成日時：</string>
     <string name="memo_fragment_uDate">更新日時：</string>
     <string name="title_activity_abstract_write_actitivity">AbstractWriteActitivity</string>
+    <string name="title_activity_edit_memo">EditMemo</string>
+    <string name="edit_update_button">更新</string>
 </resources>
