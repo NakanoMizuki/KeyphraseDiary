@@ -34,6 +34,10 @@
             android:name=".activities.AbstractWriteActivity"
             android:label="@string/title_activity_abstract_write_actitivity" >
         </activity>
+        <activity
+            android:name=".activities.EditMemo"
+            android:label="@string/title_activity_edit_memo" >
+        </activity>
     </application>
 
 </manifest>

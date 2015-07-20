@@ -3,6 +3,7 @@ package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -73,5 +74,11 @@ public class MemoDetail extends AppCompatActivity {
 
     public void clickDelete(View v){
         deleteDialog.show();
+    }
+
+    public void clickEdit(View v){
+        Intent intent = new Intent(this, EditMemo.class);
+        intent.putExtra("memo", memo);
+        startActivity(intent);
     }
 }
