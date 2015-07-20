@@ -11,8 +11,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by nakanomizuki on 15/07/16.
@@ -25,11 +25,10 @@ public class YahooConnector {
     private static final int NUM = 5;
     private static final String TAG = "YahooConnector";
 
-    public static List<String> getKeyphrase(String sentence) {
+    public static Set<String> getKeyphrase(String sentence) {
         assert sentence == null;
         assert sentence.equals("");
 
-        List<String> phrases;
         try {
             String urlstring = REQUEST
                     + "appid=" + APP_ID
@@ -40,20 +39,16 @@ public class YahooConnector {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.connect();
-            phrases = parseXML(connection.getInputStream());
+            return parseXML(connection.getInputStream());
         } catch (IOException e) {
             return null;
         } catch (XmlPullParserException e) {
             return null;
         }
-        for (String phrase : phrases) {
-            Log.d(TAG, phrase);
-        }
-        return phrases;
     }
 
-    private static List<String> parseXML(InputStream stream) throws XmlPullParserException, IOException {
-        List<String> phrases = new ArrayList<String>();
+    private static Set<String> parseXML(InputStream stream) throws XmlPullParserException, IOException {
+        Set<String> phrases = new HashSet<String >();
 
         XmlPullParser parser = Xml.newPullParser();
         parser.setInput(stream, ENCODE);
