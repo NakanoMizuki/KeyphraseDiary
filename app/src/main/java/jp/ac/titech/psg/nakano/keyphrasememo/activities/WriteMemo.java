@@ -71,7 +71,7 @@ public class WriteMemo extends AppCompatActivity {
             tags.add(tag);
         }
 
-        TableConnector.insertMemo(this, title, content, tags);
+        new TableConnector(this).insertMemo(title, content, tags);
     }
 
 }

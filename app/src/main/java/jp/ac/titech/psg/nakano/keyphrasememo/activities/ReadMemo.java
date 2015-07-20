@@ -13,7 +13,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
-import jp.ac.titech.psg.nakano.keyphrasememo.database.MemoTableHelper;
+import jp.ac.titech.psg.nakano.keyphrasememo.database.TableConnector;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
 
@@ -28,7 +28,7 @@ public class ReadMemo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_memo);
 
-        memos = getAllMemo();
+        memos = new TableConnector(this).getAllMemo();
         ArrayAdapter<Memo> adapter = new ArrayAdapter<Memo>(this, R.layout.rowitem, memos);
         ListView listView = (ListView) findViewById(R.id.memo_list);
         listView.setAdapter(adapter);
@@ -55,11 +55,6 @@ public class ReadMemo extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public List<Memo> getAllMemo(){
-        MemoTableHelper memoTableHelper = new MemoTableHelper(this);
-        return memoTableHelper.getAllMemo();
     }
 
 
