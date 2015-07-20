@@ -14,6 +14,7 @@ import java.util.List;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
 import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.MyFragmentPagerAdapter;
+import jp.ac.titech.psg.nakano.keyphrasememo.database.TableConnector;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Tag;
 
@@ -69,5 +70,8 @@ public class EditMemo extends AbstractWriteActivity {
 
     public void clickUpdate(View v){
         Log.d("EditMemo", "memoId=" + memoId);
+        TableConnector tableConnector = new TableConnector(this);
+        tableConnector.updateMemo(memoId, memoTitle, memoContent, tags);
+        finish();
     }
 }
