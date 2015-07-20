@@ -2,8 +2,10 @@ package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.astuetz.PagerSlidingTabStrip;
 
@@ -16,6 +18,7 @@ import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Tag;
 
 public class EditMemo extends AbstractWriteActivity {
+    private long memoId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,7 @@ public class EditMemo extends AbstractWriteActivity {
 
         // set default value
         Memo memo = (Memo) getIntent().getSerializableExtra("memo");
+        memoId = memo.getId();
         setMemoTitle(memo.getTitle());
         setMemoContent(memo.getContent());
         List<String> tagStrings = new ArrayList<String>();
@@ -61,5 +65,9 @@ public class EditMemo extends AbstractWriteActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void clickUpdate(View v){
+        Log.d("EditMemo", "memoId=" + memoId);
     }
 }
