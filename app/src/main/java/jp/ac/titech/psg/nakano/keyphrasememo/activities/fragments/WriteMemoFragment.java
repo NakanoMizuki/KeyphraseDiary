@@ -1,6 +1,7 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments;
 
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,10 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
-import jp.ac.titech.psg.nakano.keyphrasememo.YahooConnector;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
 
@@ -20,6 +19,7 @@ public class WriteMemoFragment extends Fragment {
 
     private static final String TAG = "WriteMemoFragment";
     private static final String ARG_PARAM = "memo";
+    private Activity parent;
 
     public static WriteMemoFragment newInstance(Memo memo) {
         WriteMemoFragment fragment = new WriteMemoFragment();
@@ -37,15 +37,19 @@ public class WriteMemoFragment extends Fragment {
     @Override
     public void onStart(){
         super.onStart();
+        parent = getActivity();
 
         // set listener
-        Button getTagButton = (Button) getActivity().findViewById(R.id.fragment_write_memo_getTag);
+        Button getTagButton = (Button) parent.findViewById(R.id.fragment_write_memo_getTag);
         getTagButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "click getTagButton");
-                String text = ((EditText) getActivity().findViewById(R.id.fragment_write_memo_content)).getText().toString();
-                YahooConnector.getKeyphrase(text, WriteMemoFragment.this);
+                EditText tags = (EditText) parent.findViewById(R.id.fragment_write_memo_tag);
+                String content = ((EditText) parent.findViewById(R.id.fragment_write_memo_content))
+                        .getText().toString();
+                GetTagTask task = new GetTagTask(parent, tags);
+                task.execute(content);
             }
         });
     }
@@ -63,20 +67,5 @@ public class WriteMemoFragment extends Fragment {
         }
         return view;
     }
-//
-//    public void arriveKeyphrase(List<String> keyphrase){
-//        Log.d(TAG, "arriveKeyphrase");
-//        EditText tags = (EditText) getActivity().findViewById(R.id.fragment_write_memo_tag);
-//        String str = "";
-//        for(String k:keyphrase){
-//            str += k;
-//            str += ", ";
-//        }
-//        //tags.setText(str);
-//        Log.d(TAG, str);
-//    }
 
-    public void failGettingKeyphrase(){
-        Toast.makeText(getActivity(), "キーフレーズの取得に失敗しました。", Toast.LENGTH_SHORT);
-    }
 }
