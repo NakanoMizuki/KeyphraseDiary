@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
+import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.ReadMemoFragment;
 import jp.ac.titech.psg.nakano.keyphrasememo.database.MemoTableHelper;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
@@ -42,10 +43,7 @@ public class MemoDetail extends AppCompatActivity {
         deleteDialog = builder.create();
 
         // fragment
-        MemoFragment fragment = new MemoFragment();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(MemoFragment.ARG_PARAM, memo);
-        fragment.setArguments(bundle);
+        ReadMemoFragment fragment = ReadMemoFragment.newInstance(memo);
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.add(R.id.memo_detail_container, fragment);
         transaction.commit();

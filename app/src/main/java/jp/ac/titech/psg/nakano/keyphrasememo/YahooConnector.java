@@ -11,10 +11,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-
-import jp.ac.titech.psg.nakano.keyphrasememo.activities.WriteMemo;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by nakanomizuki on 15/07/16.
@@ -27,37 +25,30 @@ public class YahooConnector {
     private static final int NUM = 5;
     private static final String TAG = "YahooConnector";
 
-    public static void getKeyphrase(final String sentence, final WriteMemo writeMemo) {
+    public static Set<String> getKeyphrase(String sentence) {
         assert sentence == null;
         assert sentence.equals("");
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                List<String> phrases = new ArrayList<String>();
-                try {
-                    String urlstring = REQUEST
-                            + "appid=" + APP_ID
-                            + "&sentence=" + URLEncoder.encode(sentence, ENCODE)
-                            + "&output=" + OUTPUT;
-                    Log.d(TAG, "urlstring= " + urlstring);
-                    URL url = new URL(urlstring);
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("GET");
-                    connection.connect();
-                    phrases = parseXML(connection.getInputStream());
-                } catch (IOException e) {
-                    writeMemo.failGettingKeyphrase();
-                } catch (XmlPullParserException e) {
-                    writeMemo.failGettingKeyphrase();
-                }
-                writeMemo.arriveKeyphrase(phrases);
-            }
-        }).start();
+        try {
+            String urlstring = REQUEST
+                    + "appid=" + APP_ID
+                    + "&sentence=" + URLEncoder.encode(sentence, ENCODE)
+                    + "&output=" + OUTPUT;
+            Log.d(TAG, "urlstring= " + urlstring);
+            URL url = new URL(urlstring);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.connect();
+            return parseXML(connection.getInputStream());
+        } catch (IOException e) {
+            return null;
+        } catch (XmlPullParserException e) {
+            return null;
+        }
     }
 
-    private static List<String> parseXML(InputStream stream) throws XmlPullParserException, IOException {
-        List<String> phrases = new ArrayList<String>();
+    private static Set<String> parseXML(InputStream stream) throws XmlPullParserException, IOException {
+        Set<String> phrases = new HashSet<String >();
 
         XmlPullParser parser = Xml.newPullParser();
         parser.setInput(stream, ENCODE);
@@ -66,7 +57,7 @@ public class YahooConnector {
             if (eventType == XmlPullParser.START_TAG) {
                 if (parser.getName().equals("Keyphrase")) {
                     phrases.add(parser.nextText().toString());
-                    if(phrases.size() >= NUM) break;
+                    if (phrases.size() >= NUM) break;
                 }
             }
             eventType = parser.next();

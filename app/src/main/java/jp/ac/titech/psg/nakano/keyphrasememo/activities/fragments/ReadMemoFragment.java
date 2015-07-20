@@ -1,4 +1,4 @@
-package jp.ac.titech.psg.nakano.keyphrasememo.activities;
+package jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments;
 
 
 import android.app.Fragment;
@@ -11,19 +11,19 @@ import android.widget.TextView;
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
-public class MemoFragment extends Fragment {
+public class ReadMemoFragment extends Fragment {
     public static final String ARG_PARAM = "memo";
 
 
-    public static MemoFragment newInstance(Memo m) {
-        MemoFragment fragment = new MemoFragment();
+    public static ReadMemoFragment newInstance(Memo m) {
+        ReadMemoFragment fragment = new ReadMemoFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARG_PARAM, m);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public MemoFragment() {
+    public ReadMemoFragment() {
         // Required empty public constructor
     }
 
@@ -35,11 +35,11 @@ public class MemoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_memo, container, false);
+        View view = inflater.inflate(R.layout.fragment_read_memo, container, false);
         if (getArguments() != null) {
             Memo memo = (Memo) getArguments().getSerializable(ARG_PARAM);
-            ((TextView) view.findViewById(R.id.memo_fragment_id)).setText(memo.getId() + "");
-            ((TextView) view.findViewById(R.id.memo_fragment_title)).setText(memo.getTitle());
+            ((TextView) view.findViewById(R.id.read_memo_fragment_id)).setText(memo.getId() + "");
+            ((TextView) view.findViewById(R.id.read_memo_fragment_title)).setText(memo.getTitle());
         }
         return view;
     }
