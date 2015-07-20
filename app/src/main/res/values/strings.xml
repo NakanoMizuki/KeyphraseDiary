@@ -10,6 +10,7 @@
     <string name="title_activity_write_memo">WriteMemo</string>
     <string name="reset_button">削除</string>
     <string name="save_button">メモを保存</string>
+    <string name="write_tab">メモを書く</string>
     <string name="write_title_hint">タイトル</string>
     <string name="write_memo_hint">メモ</string>
     <string name="get_keyphrase">タグを自動取得</string>
@@ -24,4 +25,5 @@
 
     <string name="memo_fragment_cDate">作成日時：</string>
     <string name="memo_fragment_uDate">更新日時：</string>
+    <string name="title_activity_abstract_write_actitivity">AbstractWriteActitivity</string>
 </resources>
