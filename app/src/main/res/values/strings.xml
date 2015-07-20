@@ -24,4 +24,7 @@
 
     <string name="memo_fragment_cDate">作成日時：</string>
     <string name="memo_fragment_uDate">更新日時：</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

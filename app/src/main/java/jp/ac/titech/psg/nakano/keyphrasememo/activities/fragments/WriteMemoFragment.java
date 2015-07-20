@@ -1,14 +1,10 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments;
 
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
@@ -16,10 +12,7 @@ import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
 
 public class WriteMemoFragment extends android.support.v4.app.Fragment {
-
-    private static final String TAG = "WriteMemoFragment";
     private static final String ARG_PARAM = "memo";
-    private Activity parent;
 
     public static WriteMemoFragment newInstance(Memo memo) {
         WriteMemoFragment fragment = new WriteMemoFragment();
@@ -32,26 +25,6 @@ public class WriteMemoFragment extends android.support.v4.app.Fragment {
 
     public WriteMemoFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onStart(){
-        super.onStart();
-        parent = getActivity();
-
-        // set listener
-        Button getTagButton = (Button) parent.findViewById(R.id.fragment_write_memo_getTag);
-        getTagButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "click getTagButton");
-                EditText tags = (EditText) parent.findViewById(R.id.fragment_write_memo_tag);
-                String content = ((EditText) parent.findViewById(R.id.fragment_write_memo_content))
-                        .getText().toString();
-                GetTagTask task = new GetTagTask(parent, tags);
-                task.execute(content);
-            }
-        });
     }
 
     @Override
