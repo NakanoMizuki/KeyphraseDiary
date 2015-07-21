@@ -1,10 +1,15 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.util.List;
 
@@ -16,6 +21,8 @@ public class SearchResult extends AppCompatActivity {
 
     public static final String PARAM = "CHECKED_TAGS";
 
+    private List<Memo> memos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,10 +33,14 @@ public class SearchResult extends AppCompatActivity {
             Log.d("SearchResult", "tagId=" + tagId);
         }
         TableConnector tableConnector = new TableConnector(this);
-        List<Memo> memos = tableConnector.getMemoHasTag(tagIds);
+        memos = tableConnector.getMemoHasTag(tagIds);
         for(Memo memo : memos){
             Log.d("SearchResult", "memo=" + memo.toString());
         }
+        ArrayAdapter<Memo> adapter = new ArrayAdapter<Memo>(this, R.layout.rowitem, memos);
+        ListView listView = (ListView) findViewById(R.id.search_memo_list);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new MyListener());
     }
 
     @Override
@@ -52,5 +63,15 @@ public class SearchResult extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // Listener for clicking listView item
+    class MyListener implements AdapterView.OnItemClickListener{
+        @Override
+        public void onItemClick(AdapterView<?> parent, View v, int position, long id){
+            Intent intent = new Intent(SearchResult.this, MemoDetail.class);
+            intent.putExtra("memo", memos.get(position));
+            startActivity(intent);
+        }
     }
 }
