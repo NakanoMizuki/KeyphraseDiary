@@ -54,7 +54,7 @@ public class PreviewFragment extends android.support.v4.app.Fragment {
                 TextView contentView = (TextView) parent.findViewById(R.id.preview_fragment_content);
                 contentView.setText(content);
 
-                List<String> tags = parent.getTags();
+                List<String> tags = parent.getTagNames();
                 if(tags != null && !tags.isEmpty()) {
                     TextView tagView = (TextView) parent.findViewById(R.id.preview_fragment_tag);
                     String str = "";

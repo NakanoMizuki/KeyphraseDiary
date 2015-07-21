@@ -66,9 +66,13 @@ public class WriteTagFragment extends android.support.v4.app.Fragment {
         EditText tagEdit = (EditText) parent.findViewById(R.id.fragment_write_memo_tag);
         tagEdit.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
             @Override
             public void afterTextChanged(Editable s) {
                 List<String> tags = Arrays.asList(s.toString().split(","));
@@ -82,6 +86,4 @@ public class WriteTagFragment extends android.support.v4.app.Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_write_tag, container, false);
     }
-
-
 }

@@ -30,11 +30,11 @@ public class EditMemo extends AbstractWriteActivity {
         memoId = oldMemo.getId();
         setMemoTitle(oldMemo.getTitle());
         setMemoContent(oldMemo.getContent());
-        List<String> tagStrings = new ArrayList<String>();
+        List<String> tags = new ArrayList<String>();
         for (Tag tag : oldMemo.getTags()){
-            tagStrings.add(tag.getName());
+            tags.add(tag.getName());
         }
-        setTags(tagStrings);
+        this.setTags(tags);
 
         // fragment
         ViewPager viewPager = (ViewPager)findViewById(R.id.pager);
