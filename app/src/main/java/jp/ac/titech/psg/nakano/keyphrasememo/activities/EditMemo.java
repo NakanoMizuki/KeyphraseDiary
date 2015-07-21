@@ -67,6 +67,10 @@ public class EditMemo extends AbstractWriteActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void clickNoEdit(View v){
+        finish();
+    }
+
     public void clickUpdate(View v){
         TableConnector tableConnector = new TableConnector(this);
         tableConnector.updateMemo(memoId, memoTitle, memoContent, tags);
