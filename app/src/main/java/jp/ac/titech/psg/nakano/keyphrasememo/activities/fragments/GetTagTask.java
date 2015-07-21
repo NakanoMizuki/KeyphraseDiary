@@ -1,25 +1,22 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments;
 
-import android.app.Activity;
 import android.os.AsyncTask;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.Set;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
 import jp.ac.titech.psg.nakano.keyphrasememo.YahooConnector;
+import jp.ac.titech.psg.nakano.keyphrasememo.activities.AbstractWriteActivity;
 
 /**
  * Created by nakanomizuki on 15/07/20.
  */
 public class GetTagTask extends AsyncTask<String, Void, Set<String>> {
-    private final Activity activity;
-    private final EditText tags;
+    private final AbstractWriteActivity activity;
 
-    public GetTagTask(Activity activity, EditText tags){
+    public GetTagTask(AbstractWriteActivity activity){
         this.activity = activity;
-        this.tags = tags;
     }
 
     @Override
@@ -35,9 +32,11 @@ public class GetTagTask extends AsyncTask<String, Void, Set<String>> {
         }
         String str = "";
         for(String s: result){
+            activity.createTagView(s);
             str += s + ",";
         }
-        tags.setText(str);
+        str = str.substring(0, str.length()-1);
+        Toast.makeText(activity, "タグの取得に成功しました:" + str, Toast.LENGTH_SHORT).show();
     }
 
 }

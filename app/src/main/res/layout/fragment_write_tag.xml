@@ -9,10 +9,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="タグを取得"/>
-    <EditText
-        android:id="@+id/fragment_write_memo_tag"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
     <Button
         android:onClick="clickCreate"

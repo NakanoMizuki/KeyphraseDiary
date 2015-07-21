@@ -22,7 +22,7 @@ public class TableConnector {
         this.context = context;
     }
 
-    public void insertMemo(String title, String content, Set<String> tags){
+    public void insertMemo(String title, String content, List<String> tags){
         Log.d(TAG, "insertMemo");
         Log.d(TAG, "title=" + title + ", content=" + content);
         for(String tag:tags){

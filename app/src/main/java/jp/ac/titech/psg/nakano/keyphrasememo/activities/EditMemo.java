@@ -73,7 +73,7 @@ public class EditMemo extends AbstractWriteActivity {
 
     public void clickUpdate(View v){
         TableConnector tableConnector = new TableConnector(this);
-        tableConnector.updateMemo(memoId, memoTitle, memoContent, tags);
+        tableConnector.updateMemo(memoId, memoTitle, memoContent, getTagNames());
         setResult(MemoDetail.RESULT_CODE_CHANGED);
         finish();
     }
