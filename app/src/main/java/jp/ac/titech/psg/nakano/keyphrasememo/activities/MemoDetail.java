@@ -14,11 +14,15 @@ import android.view.View;
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
 import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.ReadMemoFragment;
 import jp.ac.titech.psg.nakano.keyphrasememo.database.MemoTableHelper;
+import jp.ac.titech.psg.nakano.keyphrasememo.database.TableConnector;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
 public class MemoDetail extends AppCompatActivity {
 
     private static final String TAG = "MemoDetail";
+    private static final int REQUEST_CODE = 1;
+    public static final int RESULT_CODE_CHANGED = 100;
+
     private Memo memo;
     private AlertDialog deleteDialog;
 
@@ -38,13 +42,14 @@ public class MemoDetail extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 MemoTableHelper tableHelper = new MemoTableHelper(MemoDetail.this);
                 tableHelper.deleteMemo(memo.getId());
+                finish();
             }
         });
         builder.setNegativeButton(R.string.delete_dialog_negative, null);
         deleteDialog = builder.create();
 
         // fragment
-        ReadMemoFragment fragment = ReadMemoFragment.newInstance(memo);
+        ReadMemoFragment fragment = ReadMemoFragment.newInstance();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.add(R.id.memo_detail_container, fragment);
         transaction.commit();
@@ -72,6 +77,16 @@ public class MemoDetail extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+        if(requestCode != REQUEST_CODE) return;
+        if(resultCode == RESULT_CODE_CHANGED){
+            TableConnector tableConnector = new TableConnector(this);
+            Memo newMemo = tableConnector.getMemo(memo.getId());
+            memo = newMemo;
+        }
+    }
+
     public void clickDelete(View v){
         deleteDialog.show();
     }
@@ -79,6 +94,6 @@ public class MemoDetail extends AppCompatActivity {
     public void clickEdit(View v){
         Intent intent = new Intent(this, EditMemo.class);
         intent.putExtra("memo", memo);
-        startActivity(intent);
+        startActivityForResult(intent, REQUEST_CODE);
     }
 }

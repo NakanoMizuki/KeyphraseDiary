@@ -73,8 +73,9 @@ public class WriteMemo extends AbstractWriteActivity {
         for(String tag: tagsText.getText().toString().split(",")) {
             tags.add(tag);
         }
-
         new TableConnector(this).insertMemo(title, content, tags);
+
+        finish();
     }
 
 }
