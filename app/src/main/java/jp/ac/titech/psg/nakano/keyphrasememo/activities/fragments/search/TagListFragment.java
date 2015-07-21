@@ -25,12 +25,12 @@ public class TagListFragment extends android.support.v4.app.ListFragment {
         setListAdapter(adapter);
     }
 
-    public List<Long> getCheckedTagIds(){
-        List<Long> tagIds = new ArrayList<Long>();
+    public ArrayList<String> getCheckedTagIds(){
+        ArrayList<String> tagIds = new ArrayList<String>();
         List<Boolean> checkedList = adapter.getCheckedList();
         for(int i=0; i < checkedList.size(); i++){
             if(checkedList.get(i)){
-                tagIds.add(tags.get(i).getId());
+                tagIds.add(String.valueOf(tags.get(i).getId()));
             }
         }
         return tagIds;

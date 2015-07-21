@@ -1,5 +1,6 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
@@ -53,9 +55,10 @@ public class SearchByTag extends AppCompatActivity {
 
    public void clickSearchButton(View view){
        TagListFragment tagListFragment = (TagListFragment) getSupportFragmentManager().findFragmentById(R.id.taglist_fragment);
-       List<Long> checkedTagIds = tagListFragment.getCheckedTagIds();
-       for(Long l:checkedTagIds){
-           Log.d("SearchByTag", "tagId=" + l);
-       }
+       ArrayList<String> checkedTagIds = tagListFragment.getCheckedTagIds();
+
+       Intent intent = new Intent(this, SearchResult.class);
+       intent.putStringArrayListExtra(SearchResult.PARAM, checkedTagIds);
+       startActivity(intent);
    }
 }
