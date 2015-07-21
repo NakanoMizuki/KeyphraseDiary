@@ -76,6 +76,14 @@ public class MemoTableHelper extends SQLiteOpenHelper {
         db.delete(TABLE, "id = " + String.valueOf(id), null);
     }
 
+    public Memo getMemo(long memoId){
+        Log.d(TAG, "call getMemo(memoId=" + memoId + "");
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from " + TABLE , null);
+        cursor.moveToFirst();
+        return getMemoFromCursor(cursor);
+    }
+
     public List<Memo> getAllMemo(){
         Log.d(TAG, "call getAllMemo");
         List<Memo> memos = new ArrayList<Memo>();

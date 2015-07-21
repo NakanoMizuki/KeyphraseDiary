@@ -2,7 +2,6 @@ package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,12 +26,12 @@ public class EditMemo extends AbstractWriteActivity {
         setContentView(R.layout.activity_edit_memo);
 
         // set default value
-        Memo memo = (Memo) getIntent().getSerializableExtra("memo");
-        memoId = memo.getId();
-        setMemoTitle(memo.getTitle());
-        setMemoContent(memo.getContent());
+        Memo oldMemo = (Memo) getIntent().getSerializableExtra("memo");
+        memoId = oldMemo.getId();
+        setMemoTitle(oldMemo.getTitle());
+        setMemoContent(oldMemo.getContent());
         List<String> tagStrings = new ArrayList<String>();
-        for (Tag tag : memo.getTags()){
+        for (Tag tag : oldMemo.getTags()){
             tagStrings.add(tag.getName());
         }
         setTags(tagStrings);
@@ -69,9 +68,9 @@ public class EditMemo extends AbstractWriteActivity {
     }
 
     public void clickUpdate(View v){
-        Log.d("EditMemo", "memoId=" + memoId);
         TableConnector tableConnector = new TableConnector(this);
         tableConnector.updateMemo(memoId, memoTitle, memoContent, tags);
+        setResult(MemoDetail.RESULT_CODE_CHANGED);
         finish();
     }
 }
