@@ -38,6 +38,10 @@
             android:name=".activities.EditMemo"
             android:label="@string/title_activity_edit_memo" >
         </activity>
+        <activity
+            android:name=".activities.SearchByTag"
+            android:label="@string/title_activity_search_by_tag" >
+        </activity>
     </application>
 
 </manifest>
