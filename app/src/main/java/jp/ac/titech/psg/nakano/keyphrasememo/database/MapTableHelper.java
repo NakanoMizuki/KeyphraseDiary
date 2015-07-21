@@ -96,4 +96,18 @@ public class MapTableHelper extends SQLiteOpenHelper {
         db.close();
         return tagIds;
     }
+
+    public Set<Long> getMemoIds(long tagId){
+        Set<Long> memoIds = new HashSet<Long>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("select memoId from " + TABLE + " where tagId = " + tagId + ";", null);
+        boolean isEOF = cursor.moveToFirst();
+        while (isEOF){
+            memoIds.add(cursor.getLong(cursor.getColumnIndex("memoId")));
+            isEOF = cursor.moveToNext();
+        }
+        cursor.close();
+        db.close();
+        return memoIds;
+    }
 }

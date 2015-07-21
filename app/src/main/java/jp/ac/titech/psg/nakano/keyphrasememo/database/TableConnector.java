@@ -86,4 +86,21 @@ public class TableConnector {
         return tagTableHelper.getAllTags();
     }
 
+    public List<Memo> getMemoHasTag(List<String> tagIds){
+        long tagId = Long.parseLong(tagIds.get(0));
+        tagIds.remove(0);
+        MapTableHelper mapTableHelper = new MapTableHelper(context);
+        Set<Long> memoIds = mapTableHelper.getMemoIds(tagId);
+
+        for(String idStr:tagIds){
+            long id = Long.parseLong(idStr);
+            if(memoIds.isEmpty()) break;
+            Set<Long> set = mapTableHelper.getMemoIds(id);
+            memoIds.retainAll(set);
+        }
+
+        MemoTableHelper memoTableHelper = new MemoTableHelper(context);
+        return memoTableHelper.getMemo(memoIds);
+    }
+
 }

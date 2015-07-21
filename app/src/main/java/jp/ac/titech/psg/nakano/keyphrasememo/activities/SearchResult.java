@@ -6,9 +6,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
+import jp.ac.titech.psg.nakano.keyphrasememo.database.TableConnector;
+import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
 public class SearchResult extends AppCompatActivity {
 
@@ -19,9 +21,14 @@ public class SearchResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
 
-        ArrayList<String> tagIds = getIntent().getStringArrayListExtra(PARAM);
+        List<String> tagIds = getIntent().getStringArrayListExtra(PARAM);
         for(String tagId:tagIds){
             Log.d("SearchResult", "tagId=" + tagId);
+        }
+        TableConnector tableConnector = new TableConnector(this);
+        List<Memo> memos = tableConnector.getMemoHasTag(tagIds);
+        for(Memo memo : memos){
+            Log.d("SearchResult", "memo=" + memo.toString());
         }
     }
 
