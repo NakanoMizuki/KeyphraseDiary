@@ -10,9 +10,6 @@ import android.widget.EditText;
 
 import com.astuetz.PagerSlidingTabStrip;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
 import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.MyFragmentPagerAdapter;
 import jp.ac.titech.psg.nakano.keyphrasememo.database.TableConnector;
@@ -68,12 +65,7 @@ public class WriteMemo extends AbstractWriteActivity {
         String title = titleText.getText().toString();
         EditText contentText = (EditText) findViewById(R.id.fragment_write_memo_content);
         String content = contentText.getText().toString();
-        EditText tagsText = (EditText) findViewById(R.id.fragment_write_memo_tag);
-        Set<String> tags = new HashSet<String>();
-        for(String tag: tagsText.getText().toString().split(",")) {
-            tags.add(tag);
-        }
-        new TableConnector(this).insertMemo(title, content, tags);
+        new TableConnector(this).insertMemo(title, content, getTagNames());
 
         finish();
     }
