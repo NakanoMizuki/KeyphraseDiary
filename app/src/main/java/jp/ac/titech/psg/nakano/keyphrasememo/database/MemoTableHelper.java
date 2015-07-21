@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
@@ -79,9 +80,33 @@ public class MemoTableHelper extends SQLiteOpenHelper {
     public Memo getMemo(long memoId){
         Log.d(TAG, "call getMemo(memoId=" + memoId + "");
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from " + TABLE , null);
+        Cursor cursor = db.rawQuery("select * from " + TABLE + " where id =" + memoId, null);
         cursor.moveToFirst();
         return getMemoFromCursor(cursor);
+    }
+
+    public List<Memo> getMemo(Set<Long> memoIds){
+        Log.d(TAG, "call getMemo(memoIds)");
+        List<Memo> memos = new ArrayList<Memo>();
+        if(memoIds.isEmpty()) return memos;
+
+        String target = "(";
+        for(long l:memoIds){
+            target += l + ",";
+        }
+        target = target.substring(0, target.length()-1) + ")";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select * from " + TABLE + " where id in " + target;
+        Log.d(TAG, "getMemo:query=" + query);
+        Cursor cursor = db.rawQuery(query, null);
+        boolean EOF = cursor.moveToFirst();
+        while (EOF){
+            memos.add(getMemoFromCursor(cursor));
+            EOF = cursor.moveToNext();
+        }
+        cursor.close();
+
+        return memos;
     }
 
     public List<Memo> getAllMemo(){
@@ -89,10 +114,10 @@ public class MemoTableHelper extends SQLiteOpenHelper {
         List<Memo> memos = new ArrayList<Memo>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE + ";", null);
-        boolean isEOF = cursor.moveToFirst();
-        while(isEOF){
+        boolean EOF = cursor.moveToFirst();
+        while(EOF){
             memos.add(getMemoFromCursor(cursor));
-            isEOF = cursor.moveToNext();
+            EOF = cursor.moveToNext();
         }
         cursor.close();
 

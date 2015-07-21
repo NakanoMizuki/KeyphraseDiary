@@ -11,15 +11,18 @@
         <Button
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/go_write_button"
             android:onClick="goWriteActivity"
             android:text="@string/main_write_memo"/>
         <Button
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/go_read_button"
             android:onClick="goReadActivity"
             android:text="@string/main_read_memo"/>
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:onClick="goSearchActivity"
+            android:text="@string/main_search_memo"/>
     </LinearLayout>
 
 
