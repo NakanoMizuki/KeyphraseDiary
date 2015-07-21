@@ -81,4 +81,9 @@ public class TableConnector {
         return memos;
     }
 
+    public List<Tag> getAllTag(){
+        TagTableHelper tagTableHelper = new TagTableHelper(context);
+        return tagTableHelper.getAllTags();
+    }
+
 }

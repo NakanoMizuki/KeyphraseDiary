@@ -89,10 +89,10 @@ public class MemoTableHelper extends SQLiteOpenHelper {
         List<Memo> memos = new ArrayList<Memo>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE + ";", null);
-        boolean isEOF = cursor.moveToFirst();
-        while(isEOF){
+        boolean EOF = cursor.moveToFirst();
+        while(EOF){
             memos.add(getMemoFromCursor(cursor));
-            isEOF = cursor.moveToNext();
+            EOF = cursor.moveToNext();
         }
         cursor.close();
 

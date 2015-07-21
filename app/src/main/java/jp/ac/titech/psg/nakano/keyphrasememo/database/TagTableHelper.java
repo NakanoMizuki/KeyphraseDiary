@@ -95,10 +95,24 @@ public class TagTableHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("select id, name from " + TABLE + " where id in (" + targetIds + ");", null);
 
-        boolean isEOF = cursor.moveToFirst();
-        while(isEOF){
+        boolean EOF = cursor.moveToFirst();
+        while(EOF){
             tags.add(createTagFromCursor(cursor));
-            isEOF = cursor.moveToNext();
+            EOF = cursor.moveToNext();
+        }
+        cursor.close();
+        return tags;
+    }
+
+    public List<Tag> getAllTags(){
+        Log.d(TAG, "call getAllTags");
+        List<Tag> tags = new ArrayList<Tag>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from " + TABLE, null);
+        boolean EOF = cursor.moveToFirst();
+        while (EOF){
+            tags.add(createTagFromCursor(cursor));
+            EOF = cursor.moveToNext();
         }
         cursor.close();
         return tags;

@@ -2,17 +2,29 @@ package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.List;
+
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
+import jp.ac.titech.psg.nakano.keyphrasememo.database.TableConnector;
+import jp.ac.titech.psg.nakano.keyphrasememo.model.Tag;
 
 public class SearchByTag extends AppCompatActivity {
+    private List<Tag> tags;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_by_tag);
+
+        TableConnector tableConnector = new TableConnector(this);
+        tags = tableConnector.getAllTag();
+        for(Tag tag:tags){
+            Log.d("SearchByTag", tag.getName());
+        }
     }
 
     @Override
