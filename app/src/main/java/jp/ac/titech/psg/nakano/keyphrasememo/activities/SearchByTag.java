@@ -5,10 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.List;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
+import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.search.TagListFragment;
 import jp.ac.titech.psg.nakano.keyphrasememo.database.TableConnector;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Tag;
 
@@ -48,4 +50,12 @@ public class SearchByTag extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+   public void clickSearchButton(View view){
+       TagListFragment tagListFragment = (TagListFragment) getSupportFragmentManager().findFragmentById(R.id.taglist_fragment);
+       List<Long> checkedTagIds = tagListFragment.getCheckedTagIds();
+       for(Long l:checkedTagIds){
+           Log.d("SearchByTag", "tagId=" + l);
+       }
+   }
 }
