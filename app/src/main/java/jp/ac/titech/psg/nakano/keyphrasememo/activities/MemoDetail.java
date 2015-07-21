@@ -42,6 +42,7 @@ public class MemoDetail extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 MemoTableHelper tableHelper = new MemoTableHelper(MemoDetail.this);
                 tableHelper.deleteMemo(memo.getId());
+                finish();
             }
         });
         builder.setNegativeButton(R.string.delete_dialog_negative, null);
