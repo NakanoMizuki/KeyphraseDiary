@@ -38,7 +38,7 @@ public class WriteTagFragment extends android.support.v4.app.Fragment {
         parent = (AbstractWriteActivity) getActivity();
 
         // set default value
-        List<String> tags = parent.getTags();
+        List<String> tags = parent.getDefaultTags();
         if(tags != null && !tags.isEmpty()) {
             for (String s : tags) {
                 parent.createTagView(s);
