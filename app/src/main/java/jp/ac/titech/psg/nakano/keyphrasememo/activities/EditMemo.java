@@ -41,6 +41,8 @@ public class EditMemo extends AbstractWriteActivity {
         pager = viewPager;
         MyFragmentPagerAdapter pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
+        pager.setCurrentItem(pagerAdapter.getDefaultPage());
+        pager.setOffscreenPageLimit(pagerAdapter.getCount() -1);
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(viewPager);
     }
