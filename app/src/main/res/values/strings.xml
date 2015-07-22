@@ -16,7 +16,6 @@
     <string name="write_memo_hint">メモ</string>
     <string name="get_keyphrase">タグを自動取得</string>
     <string name="fail_getting_keyphrase">タグの取得に失敗しました</string>
-    <string name="title_activity_read_memo">ReadMemo</string>
 
     <string name="title_activity_memo_detail">MemoDetail</string>
     <string name="delete_dialog_message">本当に削除しますか？</string>
@@ -32,5 +31,9 @@
     <string name="edit_update_button">更新</string>
 
     <string name="title_activity_search_by_tag">SearchByTag</string>
+
+    <string name="title_activity_read_memo">ReadMemo</string>
     <string name="title_activity_search_result">SearchResult</string>
+    <string name="read_empty_list">メモがありません</string>
+    <string name="result_empty_list">該当するメモがありません</string>
 </resources>

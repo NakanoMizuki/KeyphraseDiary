@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -41,6 +42,8 @@ public class SearchResult extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.search_memo_list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new MyListener());
+        TextView emtpyText = (TextView) findViewById(R.id.result_empty_list);
+        listView.setEmptyView(emtpyText);
     }
 
     @Override

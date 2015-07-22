@@ -8,13 +8,25 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="jp.ac.titech.psg.nakano.keyphrasememo.activities.ReadMemo">
 
-    <ScrollView
+    <TextView
+        android:id="@+id/read_empty_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/read_empty_list" />
+
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        <ListView
-            android:id="@+id/memo_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </ScrollView>
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <ListView
+                android:id="@+id/memo_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </ScrollView>
+    </LinearLayout>
 
 </RelativeLayout>

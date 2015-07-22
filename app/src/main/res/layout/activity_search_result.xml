@@ -9,14 +9,25 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="jp.ac.titech.psg.nakano.keyphrasememo.activities.SearchResult">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    <TextView
+        android:id="@+id/result_empty_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/result_empty_list" />
 
-        <ListView
-            android:id="@+id/search_memo_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </ScrollView>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <ListView
+                android:id="@+id/search_memo_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </ScrollView>
+    </LinearLayout>
 
 </LinearLayout>
