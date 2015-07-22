@@ -3,6 +3,7 @@ package jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,13 +56,15 @@ public class PreviewFragment extends android.support.v4.app.Fragment {
                 contentView.setText(content);
 
                 List<String> tags = parent.getTagNames();
+                TextView tagView = (TextView) parent.findViewById(R.id.preview_fragment_tag);
                 if(tags != null && !tags.isEmpty()) {
-                    TextView tagView = (TextView) parent.findViewById(R.id.preview_fragment_tag);
                     String str = "";
                     for (String tag : tags) {
                         str += tag + ",";
                     }
                     tagView.setText(str);
+                }else{
+                    tagView.setText("");
                 }
             }
             @Override
