@@ -42,7 +42,7 @@ public class PreviewFragment extends android.support.v4.app.Fragment {
     public void onStart(){
         super.onStart();
         final AbstractWriteActivity parent = (AbstractWriteActivity) getActivity();
-        parent.getViewPager().setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        parent.getViewPager().addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
             @Override
