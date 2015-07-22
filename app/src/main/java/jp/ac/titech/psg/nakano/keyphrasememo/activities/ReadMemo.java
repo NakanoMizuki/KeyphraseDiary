@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -33,6 +34,8 @@ public class ReadMemo extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.memo_list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new MyListener());
+        TextView emtpyText = (TextView) findViewById(R.id.read_empty_list);
+        listView.setEmptyView(emtpyText);
     }
 
     @Override
