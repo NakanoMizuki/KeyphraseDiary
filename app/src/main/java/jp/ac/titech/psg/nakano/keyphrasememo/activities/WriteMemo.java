@@ -29,6 +29,8 @@ public class WriteMemo extends AbstractWriteActivity {
         pager = viewPager;
         MyFragmentPagerAdapter pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
+        pager.setOffscreenPageLimit(pagerAdapter.getCount() -1);
+        pager.setCurrentItem(pagerAdapter.getDefaultPage());
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(viewPager);
     }
