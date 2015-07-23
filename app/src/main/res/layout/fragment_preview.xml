@@ -15,12 +15,13 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/preview_fragment_content"
+            android:id="@+id/preview_fragment_tag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/preview_fragment_tag"
+        <LinearLayout
+            android:id="@+id/preview_fragment_content"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
