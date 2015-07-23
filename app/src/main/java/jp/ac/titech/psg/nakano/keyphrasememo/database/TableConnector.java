@@ -87,22 +87,31 @@ public class TableConnector {
         return tagTableHelper.getAllTags();
     }
 
-    public List<Memo> getMemoHasTag(List<String> tagIds){
-        if(tagIds == null || tagIds.isEmpty()) return new ArrayList<Memo>();
-        long tagId = Long.parseLong(tagIds.get(0));
-        tagIds.remove(0);
+    public List<Memo> getMemoHasTag(List<String> selectedTagIds){
+        if(selectedTagIds == null || selectedTagIds.isEmpty()) return new ArrayList<Memo>();
+        long tagId = Long.parseLong(selectedTagIds.get(0));
+        selectedTagIds.remove(0);
         MapTableHelper mapTableHelper = new MapTableHelper(context);
         Set<Long> memoIds = mapTableHelper.getMemoIds(tagId);
 
-        for(String idStr:tagIds){
+        // get memo which has selected tags
+        for(String idStr:selectedTagIds){
             long id = Long.parseLong(idStr);
             if(memoIds.isEmpty()) break;
             Set<Long> set = mapTableHelper.getMemoIds(id);
             memoIds.retainAll(set);
         }
-
         MemoTableHelper memoTableHelper = new MemoTableHelper(context);
-        return memoTableHelper.getMemo(memoIds);
+        List<Memo> memos = memoTableHelper.getMemo(memoIds);
+
+        // set tags
+        TagTableHelper tagTableHelper = new TagTableHelper(context);
+        for(Memo memo:memos){
+            List<Long> tagIds = mapTableHelper.getTagIds(memo.getId());
+            List<Tag> tags = tagTableHelper.getTags(tagIds);
+            memo.setTags(tags);
+        }
+        return memos;
     }
 
 }
