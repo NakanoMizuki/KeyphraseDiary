@@ -51,6 +51,11 @@ public class MapTableHelper extends SQLiteOpenHelper {
     }
 
     public void update(long memoId, Set<Long> tagIds){
+        if(tagIds.isEmpty()){
+            Log.d(TAG, "memoId=" + memoId + " has no tag");
+            removeAllTag(memoId);
+            return;
+        }
         String newIdStr = "(";
         for(Long tagId:tagIds){
             newIdStr += tagId + ",";
@@ -59,7 +64,9 @@ public class MapTableHelper extends SQLiteOpenHelper {
         Log.d(TAG, "newIdStr=" + newIdStr);
         SQLiteDatabase db = getWritableDatabase();
 
-        db.delete(TABLE, "memoId = " + memoId + " and tagId not in " + newIdStr, null);
+        String deleteQuery = "memoId = " + memoId + " and tagId not in " + newIdStr;
+        Log.d(TAG, "update:deleteQuery=" + deleteQuery);
+        db.delete(TABLE, deleteQuery, null);
 
         Cursor cursor = db.rawQuery("select tagId from " + TABLE + " where memoId = " + memoId, null);
         Set<Long> oldTagIds = getTagIdsFromCursor(memoId, cursor);
@@ -72,6 +79,10 @@ public class MapTableHelper extends SQLiteOpenHelper {
                 Log.d(TAG, "update:insert(tagId=" + newId + ")");
             }
         }
+    }
+    private void removeAllTag(long memoId){
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE, "memoId=" + memoId, null);
     }
     private Set<Long> getTagIdsFromCursor(long memoId, Cursor cursor){
         Set<Long> tagIds = new HashSet<Long>();
