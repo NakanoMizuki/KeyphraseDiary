@@ -7,17 +7,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:paddingTop="@dimen/padding_small"
         tools:context="jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.PreviewFragment">
 
         <TextView
             android:id="@+id/preview_fragment_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_title"
+            android:layout_marginBottom="@dimen/padding_small"/>
 
         <TextView
             android:id="@+id/preview_fragment_tag"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_tag"
+            android:layout_marginBottom="@dimen/padding_medium"/>
 
         <LinearLayout
             android:id="@+id/preview_fragment_content"

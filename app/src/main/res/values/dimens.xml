@@ -14,8 +14,11 @@
     <dimen name="button_text_large">26sp</dimen>
     <dimen name="button_text_medium">20sp</dimen>
     <dimen name="button_text_small">12sp</dimen>
-    
-    <dimen name="text_size_h1">36sp</dimen>
+
+    <dimen name="text_size_title">36sp</dimen>
+    <dimen name="text_size_tag">20sp</dimen>
+
+    <dimen name="text_size_h1">34sp</dimen>
     <dimen name="text_size_h2">30sp</dimen>
     <dimen name="text_size_h3">26sp</dimen>
 

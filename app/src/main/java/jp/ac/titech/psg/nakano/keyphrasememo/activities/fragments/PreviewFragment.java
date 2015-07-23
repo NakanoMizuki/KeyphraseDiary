@@ -3,6 +3,8 @@ package jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.text.Spannable;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,23 +49,33 @@ public class PreviewFragment extends android.support.v4.app.Fragment {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
             @Override
             public void onPageSelected(int position) {
+                // set title with underline
                 String title = parent.getMemoTitle();
                 TextView titleView = (TextView) parent.findViewById(R.id.preview_fragment_title);
-                titleView.setText(title);
+                if(title != null){
+                    Spannable t = Spannable.Factory.getInstance().newSpannable(title);
+                    UnderlineSpan us = new UnderlineSpan();
+                    t.setSpan(us, 0, title.length(), t.getSpanFlags(us));
+                    titleView.setText(t, TextView.BufferType.SPANNABLE);
+                }else{
+                    titleView.setText(title);
+                }
+
                 String content = parent.getMemoContent();
                 ViewGroup contentView = (ViewGroup) parent.findViewById(R.id.preview_fragment_content);
                 new MarkDownViewCreator(parent).createMarkDownView(content);
 
                 List<String> tags = parent.getTagNames();
                 TextView tagView = (TextView) parent.findViewById(R.id.preview_fragment_tag);
+                String str = getString(R.string.tag_prefix);
                 if(tags != null && !tags.isEmpty()) {
-                    String str = "";
                     for (String tag : tags) {
                         str += tag + ",";
                     }
+                    str = str.substring(0, str.length() - 1);
                     tagView.setText(str);
                 }else{
-                    tagView.setText("");
+                    tagView.setText(str);
                 }
             }
             @Override
