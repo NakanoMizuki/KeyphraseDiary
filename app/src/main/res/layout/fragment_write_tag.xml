@@ -13,13 +13,15 @@
             android:id="@+id/fragment_write_memo_getTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="タグを取得" />
+            android:text="タグを取得"
+            android:textSize="@dimen/button_text_medium"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="clickCreate"
-            android:text="create Tag" />
+            android:text="create Tag"
+            android:textSize="@dimen/button_text_medium"/>
 
         <LinearLayout
             android:id="@+id/fragment_tag_container"

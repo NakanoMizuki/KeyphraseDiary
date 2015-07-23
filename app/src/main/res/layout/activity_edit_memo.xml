@@ -12,13 +12,15 @@
         android:onClick="clickNoEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/edit_noedit_button"/>
+        android:text="@string/edit_noedit_button"
+        android:textSize="@dimen/button_text_large"/>
 
     <Button
         android:onClick="clickUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/edit_update_button"/>
+        android:text="@string/edit_update_button"
+        android:textSize="@dimen/button_text_large"/>
 
     <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/tabs"

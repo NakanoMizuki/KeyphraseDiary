@@ -12,7 +12,8 @@
         android:onClick="clickSearchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="検索"/>
+        android:text="検索"
+        android:textSize="@dimen/button_text_large"/>
 
     <fragment
         android:id="@+id/taglist_fragment"

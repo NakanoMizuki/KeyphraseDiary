@@ -15,15 +15,17 @@
             android:onClick="clickSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/write_save_button"/>
+            android:text="@string/write_save_button"
+            android:textSize="@dimen/button_text_large"/>
         <Button
             android:onClick="clickReset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/write_reset_button"/>
+            android:text="@string/write_reset_button"
+            android:textSize="@dimen/button_text_large"/>
     </LinearLayout>
 
-    
+
     <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/tabs"
         android:layout_width="match_parent"

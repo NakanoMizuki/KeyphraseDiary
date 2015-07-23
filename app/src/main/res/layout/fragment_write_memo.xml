@@ -14,22 +14,26 @@
         android:id="@+id/fragment_write_memo_h1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="h1"/>
+        android:text="h1"
+        android:textSize="@dimen/button_text_small"/>
     <Button
         android:id="@+id/fragment_write_memo_h2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="h2"/>
+        android:text="h2"
+        android:textSize="@dimen/button_text_small"/>
     <Button
         android:id="@+id/fragment_write_memo_h3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="h3"/>
+        android:text="h3"
+        android:textSize="@dimen/button_text_small"/>
     <Button
         android:id="@+id/fragment_write_memo_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="list"/>
+        android:text="list"
+        android:textSize="@dimen/button_text_small"/>
 
     <ScrollView
         android:layout_width="fill_parent"

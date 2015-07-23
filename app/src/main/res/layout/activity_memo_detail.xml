@@ -11,13 +11,15 @@
         android:onClick="clickDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Delete Memo"/>
+        android:text="Delete Memo"
+        android:textSize="@dimen/button_text_large"/>
 
     <Button
         android:onClick="clickEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit Memo"/>
+        android:text="Edit Memo"
+        android:textSize="@dimen/button_text_large"/>
 
     <LinearLayout
         android:id="@+id/memo_detail_container"
