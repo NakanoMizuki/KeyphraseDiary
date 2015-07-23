@@ -69,6 +69,7 @@ abstract public class AbstractWriteActivity extends AppCompatActivity {
         EditText tagEdit = new EditText(this);
         tagEdit.setText(name);
         tagEdit.setMinWidth(getResources().getDimensionPixelSize(R.dimen.min_edit_width));
+        tagEdit.setSingleLine();
         subContainer.addView(tagEdit, createParam());
         Button button = new Button(this);
         button.setText(getResources().getString(R.string.tag_delete_button));
