@@ -9,12 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
+import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.MaxHeightListView;
 import jp.ac.titech.psg.nakano.keyphrasememo.database.TableConnector;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
@@ -39,7 +39,7 @@ public class SearchResult extends AppCompatActivity {
             Log.d("SearchResult", "memo=" + memo.toString());
         }
         ArrayAdapter<Memo> adapter = new ArrayAdapter<Memo>(this, R.layout.rowitem, memos);
-        ListView listView = (ListView) findViewById(R.id.search_memo_list);
+        MaxHeightListView listView = (MaxHeightListView) findViewById(R.id.search_memo_list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new MyListener());
         TextView emtpyText = (TextView) findViewById(R.id.result_empty_list);

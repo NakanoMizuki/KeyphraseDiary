@@ -8,12 +8,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
+import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.MaxHeightListView;
 import jp.ac.titech.psg.nakano.keyphrasememo.database.TableConnector;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
@@ -31,7 +31,7 @@ public class ReadMemo extends AppCompatActivity {
 
         memos = new TableConnector(this).getAllMemo();
         ArrayAdapter<Memo> adapter = new ArrayAdapter<Memo>(this, R.layout.rowitem, memos);
-        ListView listView = (ListView) findViewById(R.id.memo_list);
+        MaxHeightListView listView = (MaxHeightListView) findViewById(R.id.memo_list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new MyListener());
         TextView emtpyText = (TextView) findViewById(R.id.read_empty_list);
