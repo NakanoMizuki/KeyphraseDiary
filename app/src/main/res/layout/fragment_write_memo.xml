@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingTop="@dimen/padding_small"
     tools:context="jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.WriteMemoFragment">
 
     <EditText
@@ -10,26 +11,39 @@
         android:layout_height="wrap_content"
         android:hint="@string/write_title_hint"/>
 
-    <Button
-        android:id="@+id/fragment_write_memo_h1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="h1"/>
-    <Button
-        android:id="@+id/fragment_write_memo_h2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="h2"/>
-    <Button
-        android:id="@+id/fragment_write_memo_h3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="h3"/>
-    <Button
-        android:id="@+id/fragment_write_memo_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="list"/>
+        android:paddingTop="@dimen/padding_large"
+        android:paddingBottom="@dimen/padding_small"
+        android:gravity="right">
+        <Button
+            android:id="@+id/fragment_write_memo_h1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="h1"
+            android:textSize="@dimen/button_text_small"/>
+        <Button
+            android:id="@+id/fragment_write_memo_h2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="h2"
+            android:textSize="@dimen/button_text_small"/>
+        <Button
+            android:id="@+id/fragment_write_memo_h3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="h3"
+            android:textSize="@dimen/button_text_small"/>
+        <Button
+            android:id="@+id/fragment_write_memo_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="list"
+            android:textSize="@dimen/button_text_small"/>
+    </LinearLayout>
+
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -37,7 +51,8 @@
         <EditText
             android:id="@+id/fragment_write_memo_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="@string/write_memo_hint"/>
     </ScrollView>
 
 </LinearLayout>

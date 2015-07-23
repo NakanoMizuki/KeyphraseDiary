@@ -2,6 +2,7 @@ package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -67,9 +68,11 @@ abstract public class AbstractWriteActivity extends AppCompatActivity {
         final ViewGroup subContainer = new LinearLayout(this);
         EditText tagEdit = new EditText(this);
         tagEdit.setText(name);
+        tagEdit.setMinWidth(getResources().getDimensionPixelSize(R.dimen.min_edit_width));
         subContainer.addView(tagEdit, createParam());
         Button button = new Button(this);
-        button.setText("remove");
+        button.setText(getResources().getString(R.string.tag_delete_button));
+        button.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.button_text_small));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
