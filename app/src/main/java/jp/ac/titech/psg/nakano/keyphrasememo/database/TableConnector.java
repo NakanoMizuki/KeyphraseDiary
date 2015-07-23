@@ -3,6 +3,7 @@ package jp.ac.titech.psg.nakano.keyphrasememo.database;
 import android.content.Context;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -87,6 +88,7 @@ public class TableConnector {
     }
 
     public List<Memo> getMemoHasTag(List<String> tagIds){
+        if(tagIds == null || tagIds.isEmpty()) return new ArrayList<Memo>();
         long tagId = Long.parseLong(tagIds.get(0));
         tagIds.remove(0);
         MapTableHelper mapTableHelper = new MapTableHelper(context);
