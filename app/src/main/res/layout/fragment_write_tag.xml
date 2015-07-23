@@ -1,27 +1,36 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.WriteTagFragment">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context="jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.WriteTagFragment">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/padding_small"
+        android:paddingBottom="@dimen/padding_medium">
 
         <Button
             android:id="@+id/fragment_write_memo_getTag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/layout_margin_medium"
             android:text="@string/tag_get"
-            android:textSize="@dimen/button_text_medium"/>
+            android:textSize="@dimen/button_text_medium" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="clickCreate"
             android:text="@string/tag_create_button"
-            android:textSize="@dimen/button_text_medium"/>
+            android:textSize="@dimen/button_text_medium" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
         <LinearLayout
             android:id="@+id/fragment_tag_container"
@@ -29,5 +38,5 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"></LinearLayout>
 
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>
