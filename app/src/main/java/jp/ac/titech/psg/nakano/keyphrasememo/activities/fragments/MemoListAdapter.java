@@ -47,10 +47,10 @@ public class MemoListAdapter extends ArrayAdapter<Memo> {
         ((TextView) view.findViewById(R.id.row_title)).setText(item.getTitle());
         String str = "";
         for (Tag tag:item.getTags()){
-            str += tag.getName() + ",";
+            str += tag.getName() + ", ";
         }
         if(item.getTags().size() != 0){
-            str =str.substring(0, str.length() -1);
+            str =str.substring(0, str.length() -2);
         }
         ((TextView) view.findViewById(R.id.row_tags)).setText(str);
 
