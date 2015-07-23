@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
@@ -24,24 +23,26 @@ public class MarkDownViewCreator {
         inflater = context.getLayoutInflater();
     }
 
-    public View createMarkDownView(String str){
-        ViewGroup view = new LinearLayout(context);
-        if(str == null || str.equals("")) return view;
+    public void createMarkDownView(String str){
+        ViewGroup parent = (ViewGroup) context.findViewById(R.id.preview_fragment_content);
+        parent.removeAllViews();
+        if(str == null || str.equals("")) return;
         str = str.replaceAll("\r\n", "\n");
         Log.d(TAG, "replacedStr=" + str);
         String[] lines = str.split("\n");
         for(int i=0; i < lines.length; i++){
             String line = lines[i];
             Log.d(TAG, "line=" + line);
+            View child;
             if(line.matches("^#+" + SPACE + ".+")){
-                view.addView(createHighlightView(line));
+                child = createHighlightView(line);
             }else{
-                view.addView(createTextView(line));
+                child = createTextView(line);
             }
 
+            parent.addView(child);
         }
 
-        return view;
     }
 
     private TextView createTextView(String str){
