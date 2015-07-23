@@ -17,6 +17,10 @@
             android:layout_height="wrap_content"
             android:text="@string/write_save_button"
             android:textSize="@dimen/button_text_large"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
         <Button
             android:onClick="clickReset"
             android:layout_width="wrap_content"
