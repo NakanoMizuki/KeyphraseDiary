@@ -13,10 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
+import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.MarkDownViewCreator;
 import jp.ac.titech.psg.nakano.keyphrasememo.database.MemoTableHelper;
 import jp.ac.titech.psg.nakano.keyphrasememo.database.TableConnector;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
+import jp.ac.titech.psg.nakano.keyphrasememo.model.Tag;
 
 public class MemoDetail extends AppCompatActivity {
 
@@ -53,7 +57,22 @@ public class MemoDetail extends AppCompatActivity {
         ViewGroup container = (ViewGroup) findViewById(R.id.memo_detail_container);
         LayoutInflater inflater = getLayoutInflater();
         inflater.inflate(R.layout.fragment_preview, container);
+
+        // set value
         ((TextView)findViewById(R.id.preview_fragment_title)).setText(memo.getTitle());
+        List<Tag> tags = memo.getTags();
+        TextView tagView = (TextView) findViewById(R.id.preview_fragment_tag);
+        if(tags != null && !tags.isEmpty()) {
+            String str = "";
+            for (Tag tag : tags) {
+                str += tag.getName() + ",";
+            }
+            tagView.setText(str);
+        }else{
+            tagView.setText("");
+        }
+        new MarkDownViewCreator(this).createMarkDownView(memo.getContent());
+
 
     }
 
