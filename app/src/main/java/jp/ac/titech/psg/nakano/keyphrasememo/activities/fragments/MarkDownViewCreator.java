@@ -52,7 +52,7 @@ public class MarkDownViewCreator {
 
     private TextView createHighlightView(String str){
         TextView textView = (TextView) inflater.inflate(R.layout.md_highlight1, null);
-        textView.setText("Highlight");
+        textView.setText(str.replaceAll("^#+" + SPACE, ""));
         return textView;
     }
 }
