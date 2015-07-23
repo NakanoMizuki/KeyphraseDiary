@@ -28,7 +28,7 @@ public class GetTagTask extends AsyncTask<String, Void, Set<String>> {
 
     @Override
     public void onPostExecute(Set<String> result){
-        if(result == null){
+        if(result == null || result.isEmpty()){
             Toast.makeText(activity, R.string.fail_getting_keyphrase, Toast.LENGTH_SHORT).show();
             return;
         }
