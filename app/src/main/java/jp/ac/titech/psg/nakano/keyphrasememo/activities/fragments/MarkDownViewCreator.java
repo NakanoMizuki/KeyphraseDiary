@@ -15,6 +15,7 @@ import jp.ac.titech.psg.nakano.keyphrasememo.R;
  */
 public class MarkDownViewCreator {
     private static final String TAG = "MarkDownViewCreator";
+    private static final String SPACE = "\\s";
     private Activity context;
     private LayoutInflater inflater;
 
@@ -32,7 +33,7 @@ public class MarkDownViewCreator {
         for(int i=0; i < lines.length; i++){
             String line = lines[i];
             Log.d(TAG, "line=" + line);
-            if(line.startsWith("#")){
+            if(line.matches("^#+" + SPACE + ".+")){
                 view.addView(createHighlightView(line));
             }else{
                 view.addView(createTextView(line));
