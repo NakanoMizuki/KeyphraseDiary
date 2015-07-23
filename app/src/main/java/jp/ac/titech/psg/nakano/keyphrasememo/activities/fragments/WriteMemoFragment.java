@@ -7,7 +7,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.Hashtable;
@@ -21,6 +20,9 @@ public class WriteMemoFragment extends android.support.v4.app.Fragment implement
 
     private static final Map<Integer, String> mdMap = new Hashtable<Integer, String>(){{
         put(R.id.fragment_write_memo_h1, "# ");
+        put(R.id.fragment_write_memo_h2, "## ");
+        put(R.id.fragment_write_memo_h3, "### ");
+        put(R.id.fragment_write_memo_list, "- ");
     }};
 
     public static WriteMemoFragment newInstance() {
@@ -72,8 +74,10 @@ public class WriteMemoFragment extends android.support.v4.app.Fragment implement
                 parent.setMemoContent(s.toString());
             }
         });
-        Button h1 = (Button) parent.findViewById(R.id.fragment_write_memo_h1);
-        h1.setOnClickListener(this);
+        parent.findViewById(R.id.fragment_write_memo_h1).setOnClickListener(this);
+        parent.findViewById(R.id.fragment_write_memo_h2).setOnClickListener(this);
+        parent.findViewById(R.id.fragment_write_memo_h3).setOnClickListener(this);
+        parent.findViewById(R.id.fragment_write_memo_list).setOnClickListener(this);
     }
 
    @Override
