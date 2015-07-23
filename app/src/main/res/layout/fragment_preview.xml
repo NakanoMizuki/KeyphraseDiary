@@ -21,9 +21,8 @@
             android:id="@+id/preview_fragment_tag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
             android:textSize="@dimen/text_size_tag"
-            android:layout_marginBottom="@dimen/padding_small"/>
+            android:layout_marginBottom="@dimen/padding_medium"/>
 
         <LinearLayout
             android:id="@+id/preview_fragment_content"
