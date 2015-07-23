@@ -21,6 +21,8 @@
     <dimen name="text_size_h1">34sp</dimen>
     <dimen name="text_size_h2">30sp</dimen>
     <dimen name="text_size_h3">26sp</dimen>
+    <dimen name="text_size_content">16sp</dimen>
+    <dimen name="padding_preview_content">6sp</dimen>
 
     <dimen name="min_edit_width">200sp</dimen>
 
