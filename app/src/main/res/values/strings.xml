@@ -11,8 +11,8 @@
     <string name="reset_button">削除</string>
     <string name="save_button">メモを保存</string>
     <string name="write_tab">メモを書く</string>
-    <string name="write_title_hint">タイトル</string>
-    <string name="write_memo_hint">メモ</string>
+    <string name="write_title_hint">メモのタイトル</string>
+    <string name="write_memo_hint">メモの内容</string>
     <string name="get_keyphrase">タグを自動取得</string>
     <string name="fail_getting_keyphrase">タグの取得に失敗しました</string>
 
