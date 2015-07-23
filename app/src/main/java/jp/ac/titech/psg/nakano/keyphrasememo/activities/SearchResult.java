@@ -19,6 +19,7 @@ import java.util.Set;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
 import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.MaxHeightListView;
+import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.MemoListAdapter;
 import jp.ac.titech.psg.nakano.keyphrasememo.database.TableConnector;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
@@ -60,7 +61,7 @@ public class SearchResult extends AppCompatActivity {
         for(Memo memo : memos){
             Log.d("SearchResult", "memo=" + memo.toString());
         }
-        ArrayAdapter<Memo> adapter = new ArrayAdapter<Memo>(this, R.layout.rowitem, memos);
+        ArrayAdapter<Memo> adapter = new MemoListAdapter(this, R.layout.rowitem, memos);
         MaxHeightListView listView = (MaxHeightListView) findViewById(R.id.search_memo_list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new MyListener());

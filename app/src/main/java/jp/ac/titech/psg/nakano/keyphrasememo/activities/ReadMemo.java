@@ -14,6 +14,7 @@ import java.util.List;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
 import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.MaxHeightListView;
+import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.MemoListAdapter;
 import jp.ac.titech.psg.nakano.keyphrasememo.database.TableConnector;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 
@@ -34,7 +35,7 @@ public class ReadMemo extends AppCompatActivity {
     public void onStart(){
         super.onStart();
         memos = new TableConnector(this).getAllMemo();
-        ArrayAdapter<Memo> adapter = new ArrayAdapter<Memo>(this, R.layout.rowitem, memos);
+        ArrayAdapter<Memo> adapter = new MemoListAdapter(this, R.layout.rowitem, memos);
         MaxHeightListView listView = (MaxHeightListView) findViewById(R.id.memo_list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new MyListener());
