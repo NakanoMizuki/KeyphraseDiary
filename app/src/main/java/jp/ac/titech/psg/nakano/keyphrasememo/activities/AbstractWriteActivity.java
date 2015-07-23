@@ -51,7 +51,7 @@ abstract public class AbstractWriteActivity extends AppCompatActivity {
 
 
     public void clickCreate(View v){
-        createTagView("hoge");
+        createTagView("");
     }
 
 
