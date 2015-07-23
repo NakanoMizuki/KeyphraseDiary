@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Spannable;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -95,7 +97,22 @@ public class MemoDetail extends AppCompatActivity {
     }
 
     private void setMemoValue(){
-        ((TextView)findViewById(R.id.preview_fragment_title)).setText(memo.getTitle());
+        // set title with underline
+        String title = memo.getTitle();
+        TextView titleView = (TextView) findViewById(R.id.preview_fragment_title);
+        if(title != null){
+            Spannable t = Spannable.Factory.getInstance().newSpannable(title);
+            UnderlineSpan us = new UnderlineSpan();
+            t.setSpan(us, 0, title.length(), t.getSpanFlags(us));
+            titleView.setText(t, TextView.BufferType.SPANNABLE);
+        }else{
+            titleView.setText(title);
+        }
+
+        // set content
+        new MarkDownViewCreator(this).createMarkDownView(memo.getContent());
+
+        // set tags
         List<Tag> tags = memo.getTags();
         TextView tagView = (TextView) findViewById(R.id.preview_fragment_tag);
         String str = getString(R.string.tag_prefix);
@@ -108,7 +125,6 @@ public class MemoDetail extends AppCompatActivity {
         }else{
             tagView.setText(str);
         }
-        new MarkDownViewCreator(this).createMarkDownView(memo.getContent());
     }
 
     public void clickDelete(View v){
