@@ -1,6 +1,7 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,7 +12,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
 import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.MaxHeightListView;
@@ -21,15 +25,33 @@ import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
 public class SearchResult extends AppCompatActivity {
 
     public static final String PARAM = "CHECKED_TAGS";
+    private static final String NAME = "PREF";
+    private static final String KEY = "TAGID_SET";
 
     private List<Memo> memos;
+    private List<String> tagIds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
 
-        List<String> tagIds = getIntent().getStringArrayListExtra(PARAM);
+        tagIds = getIntent().getStringArrayListExtra(PARAM);
+
+        // saved to SharedPreferences
+        SharedPreferences.Editor editor = getSharedPreferences(NAME, MODE_PRIVATE).edit();
+        Set<String> set = new HashSet<String>();
+        for(String tagid:tagIds){
+            set.add(tagid);
+        }
+        Log.d("search", "onCreate + " + tagIds.size());
+        editor.putStringSet(KEY, set);
+        editor.apply();
+
+        setMemos(tagIds);
+    }
+
+    private void setMemos(List<String> tagIds){
         for(String tagId:tagIds){
             Log.d("SearchResult", "tagId=" + tagId);
         }
@@ -45,6 +67,18 @@ public class SearchResult extends AppCompatActivity {
         TextView emtpyText = (TextView) findViewById(R.id.result_empty_list);
         listView.setEmptyView(emtpyText);
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        Log.d("search", "onResume");
+        Set<String> set = getSharedPreferences(NAME, MODE_PRIVATE).getStringSet(KEY, new HashSet<String>());
+        Log.d("search", "size=" + set.size());
+        if(!set.isEmpty()){
+            setMemos(new ArrayList<String>(set));
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
