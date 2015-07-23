@@ -1,18 +1,19 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.activities;
 
 import android.app.AlertDialog;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
-import jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments.ReadMemoFragment;
 import jp.ac.titech.psg.nakano.keyphrasememo.database.MemoTableHelper;
 import jp.ac.titech.psg.nakano.keyphrasememo.database.TableConnector;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
@@ -48,11 +49,12 @@ public class MemoDetail extends AppCompatActivity {
         builder.setNegativeButton(R.string.delete_dialog_negative, null);
         deleteDialog = builder.create();
 
-        // fragment
-        ReadMemoFragment fragment = ReadMemoFragment.newInstance();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.memo_detail_container, fragment);
-        transaction.commit();
+
+        ViewGroup container = (ViewGroup) findViewById(R.id.memo_detail_container);
+        LayoutInflater inflater = getLayoutInflater();
+        inflater.inflate(R.layout.fragment_preview, container);
+        ((TextView)findViewById(R.id.preview_fragment_title)).setText(memo.getTitle());
+
     }
 
     @Override
