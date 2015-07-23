@@ -8,8 +8,8 @@
     <string name="main_search_memo">タグでメモを探す</string>
 
     <string name="title_activity_write_memo">メモを書く</string>
-    <string name="reset_button">削除</string>
-    <string name="save_button">メモを保存</string>
+    <string name="write_reset_button">メモを破棄</string>
+    <string name="write_save_button">メモを保存</string>
     <string name="write_tab">メモを書く</string>
     <string name="write_title_hint">メモのタイトル</string>
     <string name="write_memo_hint">メモの内容</string>
