@@ -18,6 +18,7 @@
     <string name="tag_delete_button">このタグを消去</string>
     <string name="get_keyphrase">タグを自動取得</string>
     <string name="fail_getting_keyphrase">タグの取得に失敗しました</string>
+    <string name="tag_prefix">登録タグ：</string>
     
 
     <string name="title_activity_memo_detail">メモ詳細</string>

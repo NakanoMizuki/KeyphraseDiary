@@ -14,12 +14,16 @@
             android:id="@+id/preview_fragment_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_title"/>
+            android:textSize="@dimen/text_size_title"
+            android:layout_marginBottom="@dimen/padding_small"/>
 
         <TextView
             android:id="@+id/preview_fragment_tag"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textSize="@dimen/text_size_tag"
+            android:layout_marginBottom="@dimen/padding_small"/>
 
         <LinearLayout
             android:id="@+id/preview_fragment_content"

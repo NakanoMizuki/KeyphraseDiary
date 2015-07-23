@@ -98,14 +98,15 @@ public class MemoDetail extends AppCompatActivity {
         ((TextView)findViewById(R.id.preview_fragment_title)).setText(memo.getTitle());
         List<Tag> tags = memo.getTags();
         TextView tagView = (TextView) findViewById(R.id.preview_fragment_tag);
+        String str = getString(R.string.tag_prefix);
         if(tags != null && !tags.isEmpty()) {
-            String str = "";
             for (Tag tag : tags) {
                 str += tag.getName() + ",";
             }
+            str = str.substring(0, str.length() - 1);
             tagView.setText(str);
         }else{
-            tagView.setText("");
+            tagView.setText(str);
         }
         new MarkDownViewCreator(this).createMarkDownView(memo.getContent());
     }

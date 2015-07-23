@@ -67,14 +67,15 @@ public class PreviewFragment extends android.support.v4.app.Fragment {
 
                 List<String> tags = parent.getTagNames();
                 TextView tagView = (TextView) parent.findViewById(R.id.preview_fragment_tag);
+                String str = getString(R.string.tag_prefix);
                 if(tags != null && !tags.isEmpty()) {
-                    String str = "";
                     for (String tag : tags) {
                         str += tag + ",";
                     }
+                    str = str.substring(0, str.length() - 1);
                     tagView.setText(str);
                 }else{
-                    tagView.setText("");
+                    tagView.setText(str);
                 }
             }
             @Override
