@@ -21,7 +21,9 @@ public class GetTagTask extends AsyncTask<String, Void, Set<String>> {
 
     @Override
     public Set<String> doInBackground(String... params){
-        return YahooConnector.getKeyphrase(params[0]);
+        String content =params[0];
+        if(content == null || content.equals("")) return null;
+        return YahooConnector.getKeyphrase(content);
     }
 
     @Override
