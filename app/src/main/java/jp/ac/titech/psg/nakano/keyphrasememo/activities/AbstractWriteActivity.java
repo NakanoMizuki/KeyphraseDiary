@@ -56,6 +56,14 @@ abstract public class AbstractWriteActivity extends AppCompatActivity {
 
     public void createTagView(String name){
         final ViewGroup container = (ViewGroup) this.findViewById(CONTAINER_ID);
+
+        // if name is already existing, do nop
+        for(int i=0; i <container.getChildCount(); i++){
+            ViewGroup child = (ViewGroup) container.getChildAt(i);
+            String existingTag = ((EditText)child.getChildAt(0)).getText().toString();
+            if(name.equals(existingTag)) return;
+        }
+
         final ViewGroup subContainer = new LinearLayout(this);
         EditText tagEdit = new EditText(this);
         tagEdit.setText(name);
