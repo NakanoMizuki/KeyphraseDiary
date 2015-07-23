@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".activities.MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,30 +21,37 @@
         </activity>
         <activity
             android:name=".activities.WriteMemo"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_write_memo" >
         </activity>
         <activity
             android:name=".activities.ReadMemo"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_read_memo" >
         </activity>
         <activity
             android:name=".activities.MemoDetail"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_memo_detail" >
         </activity>
         <activity
             android:name=".activities.AbstractWriteActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_abstract_write_actitivity" >
         </activity>
         <activity
             android:name=".activities.EditMemo"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_edit_memo" >
         </activity>
         <activity
             android:name=".activities.SearchByTag"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_search_by_tag" >
         </activity>
         <activity
             android:name=".activities.SearchResult"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_search_result" >
         </activity>
     </application>
