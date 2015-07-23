@@ -58,22 +58,7 @@ public class MemoDetail extends AppCompatActivity {
         LayoutInflater inflater = getLayoutInflater();
         inflater.inflate(R.layout.fragment_preview, container);
 
-        // set value
-        ((TextView)findViewById(R.id.preview_fragment_title)).setText(memo.getTitle());
-        List<Tag> tags = memo.getTags();
-        TextView tagView = (TextView) findViewById(R.id.preview_fragment_tag);
-        if(tags != null && !tags.isEmpty()) {
-            String str = "";
-            for (Tag tag : tags) {
-                str += tag.getName() + ",";
-            }
-            tagView.setText(str);
-        }else{
-            tagView.setText("");
-        }
-        new MarkDownViewCreator(this).createMarkDownView(memo.getContent());
-
-
+        setMemoValue();
     }
 
     @Override
@@ -105,7 +90,24 @@ public class MemoDetail extends AppCompatActivity {
             TableConnector tableConnector = new TableConnector(this);
             Memo newMemo = tableConnector.getMemo(memo.getId());
             memo = newMemo;
+            setMemoValue();
         }
+    }
+
+    private void setMemoValue(){
+        ((TextView)findViewById(R.id.preview_fragment_title)).setText(memo.getTitle());
+        List<Tag> tags = memo.getTags();
+        TextView tagView = (TextView) findViewById(R.id.preview_fragment_tag);
+        if(tags != null && !tags.isEmpty()) {
+            String str = "";
+            for (Tag tag : tags) {
+                str += tag.getName() + ",";
+            }
+            tagView.setText(str);
+        }else{
+            tagView.setText("");
+        }
+        new MarkDownViewCreator(this).createMarkDownView(memo.getContent());
     }
 
     public void clickDelete(View v){
