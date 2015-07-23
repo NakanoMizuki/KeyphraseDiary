@@ -28,7 +28,11 @@ public class ReadMemo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_memo);
+    }
 
+    @Override
+    public void onStart(){
+        super.onStart();
         memos = new TableConnector(this).getAllMemo();
         ArrayAdapter<Memo> adapter = new ArrayAdapter<Memo>(this, R.layout.rowitem, memos);
         MaxHeightListView listView = (MaxHeightListView) findViewById(R.id.memo_list);
