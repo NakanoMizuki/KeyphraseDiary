@@ -23,4 +23,7 @@
     <dimen name="text_size_h3">26sp</dimen>
 
     <dimen name="min_edit_width">200sp</dimen>
+
+    <dimen name="row_title_size">20sp</dimen>
+    <dimen name="row_tags_size">14sp</dimen>
 </resources>

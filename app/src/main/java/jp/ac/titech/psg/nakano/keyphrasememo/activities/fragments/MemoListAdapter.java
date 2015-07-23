@@ -11,6 +11,7 @@ import java.util.List;
 
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
 import jp.ac.titech.psg.nakano.keyphrasememo.model.Memo;
+import jp.ac.titech.psg.nakano.keyphrasememo.model.Tag;
 
 /**
  * Created by nakanomizuki on 15/07/23.
@@ -44,8 +45,14 @@ public class MemoListAdapter extends ArrayAdapter<Memo> {
         Memo item = _items.get(position);
 
         ((TextView) view.findViewById(R.id.row_title)).setText(item.getTitle());
-        //((TextView) view.findViewById(R.id.title)).setText(item.getTitle());
-        //((TextView) view.findViewById(R.id.isbn)).setText(item.getIsbn());
+        String str = "";
+        for (Tag tag:item.getTags()){
+            str += tag.getName() + ",";
+        }
+        if(item.getTags().size() != 0){
+            str =str.substring(0, str.length() -1);
+        }
+        ((TextView) view.findViewById(R.id.row_tags)).setText(str);
 
         return view;
     }
