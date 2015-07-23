@@ -36,6 +36,8 @@ public class MarkDownViewCreator {
             View child;
             if(line.matches("^#+" + SPACE + ".+")){
                 child = createHighlightView(line);
+            }else if(line.matches("^\\-" + SPACE + ".+")){
+                child = createListItemView(line);
             }else{
                 child = createTextView(line);
             }
@@ -65,6 +67,13 @@ public class MarkDownViewCreator {
         }
         TextView textView = (TextView) inflater.inflate(layout, null);
         textView.setText(str.replaceAll("^#+" + SPACE, ""));
+        return textView;
+    }
+
+    private TextView createListItemView(String str){
+        Log.d(TAG, "createListItemView");
+        TextView textView = (TextView) inflater.inflate(R.layout.md_listitem, null);
+        textView.append(str.replaceAll("^\\-" + SPACE, ""));
         return textView;
     }
 }
