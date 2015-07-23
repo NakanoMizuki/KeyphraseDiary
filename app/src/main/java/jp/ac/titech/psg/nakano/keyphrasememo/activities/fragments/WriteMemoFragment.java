@@ -9,11 +9,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import java.util.Hashtable;
+import java.util.Map;
+
 import jp.ac.titech.psg.nakano.keyphrasememo.R;
 import jp.ac.titech.psg.nakano.keyphrasememo.activities.AbstractWriteActivity;
 
 
-public class WriteMemoFragment extends android.support.v4.app.Fragment {
+public class WriteMemoFragment extends android.support.v4.app.Fragment implements View.OnClickListener{
+
+    private static final Map<Integer, String> mdMap = new Hashtable<Integer, String>(){{
+        put(R.id.fragment_write_memo_h1, "# ");
+        put(R.id.fragment_write_memo_h2, "## ");
+        put(R.id.fragment_write_memo_h3, "### ");
+        put(R.id.fragment_write_memo_list, "- ");
+    }};
 
     public static WriteMemoFragment newInstance() {
         WriteMemoFragment fragment = new WriteMemoFragment();
@@ -53,7 +63,7 @@ public class WriteMemoFragment extends android.support.v4.app.Fragment {
                 parent.setMemoTitle(s.toString());
             }
         });
-        EditText editContent = (EditText) parent.findViewById(R.id.fragment_write_memo_content);
+        final EditText editContent = (EditText) parent.findViewById(R.id.fragment_write_memo_content);
         editContent.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -64,6 +74,21 @@ public class WriteMemoFragment extends android.support.v4.app.Fragment {
                 parent.setMemoContent(s.toString());
             }
         });
+        parent.findViewById(R.id.fragment_write_memo_h1).setOnClickListener(this);
+        parent.findViewById(R.id.fragment_write_memo_h2).setOnClickListener(this);
+        parent.findViewById(R.id.fragment_write_memo_h3).setOnClickListener(this);
+        parent.findViewById(R.id.fragment_write_memo_list).setOnClickListener(this);
     }
+
+   @Override
+   public void onClick(View v) {
+       int id = v.getId();
+       String insert = mdMap.get(id);
+       EditText editText = (EditText) getActivity().findViewById(R.id.fragment_write_memo_content);
+       int start = editText.getSelectionStart();
+       int end = editText.getSelectionEnd();
+       Editable editable = editText.getText();
+       editable.replace( Math.min( start, end ), Math.max( start, end ), insert);
+   }
 
 }
