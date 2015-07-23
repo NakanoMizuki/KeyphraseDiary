@@ -51,7 +51,18 @@ public class MarkDownViewCreator {
     }
 
     private TextView createHighlightView(String str){
-        TextView textView = (TextView) inflater.inflate(R.layout.md_highlight1, null);
+        int layout;
+        if(str.matches("^#" + SPACE + ".+")){
+            layout = R.layout.md_highlight1;
+            Log.d(TAG, "set h1");
+        }else if(str.matches("^##" + SPACE + ".+")){
+            layout = R.layout.md_highlight2;
+            Log.d(TAG, "set h2");
+        }else{
+            layout = R.layout.md_highlight3;
+            Log.d(TAG, "set h3");
+        }
+        TextView textView = (TextView) inflater.inflate(layout, null);
         textView.setText(str.replaceAll("^#+" + SPACE, ""));
         return textView;
     }
