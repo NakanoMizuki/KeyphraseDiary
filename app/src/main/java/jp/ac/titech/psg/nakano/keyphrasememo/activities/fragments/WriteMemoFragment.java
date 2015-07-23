@@ -4,7 +4,6 @@ package jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,7 +80,11 @@ public class WriteMemoFragment extends android.support.v4.app.Fragment implement
    public void onClick(View v) {
        int id = v.getId();
        String insert = mdMap.get(id);
-       Log.d("WriteMemo", "Please insert:" + insert);
+       EditText editText = (EditText) getActivity().findViewById(R.id.fragment_write_memo_content);
+       int start = editText.getSelectionStart();
+       int end = editText.getSelectionEnd();
+       Editable editable = editText.getText();
+       editable.replace( Math.min( start, end ), Math.max( start, end ), insert);
    }
 
 }
