@@ -17,6 +17,8 @@
     <string name="fail_getting_keyphrase">タグの取得に失敗しました</string>
 
     <string name="title_activity_memo_detail">メモ詳細</string>
+    <string name="detail_edit_button">メモを編集する</string>
+    <string name="detail_delete_button">メモを削除する</string>
     <string name="delete_dialog_message">本当に削除しますか？</string>
     <string name="delete_dialog_positive">OK</string>
     <string name="delete_dialog_negative">キャンセル</string>
