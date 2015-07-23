@@ -27,4 +27,6 @@
     <dimen name="row_title_size">20sp</dimen>
     <dimen name="row_tags_size">14sp</dimen>
     <dimen name="row_padding">10sp</dimen>
+
+    <dimen name="taglist_padding">20sp</dimen>
 </resources>
