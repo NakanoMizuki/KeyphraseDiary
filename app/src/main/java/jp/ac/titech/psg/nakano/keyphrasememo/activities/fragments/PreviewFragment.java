@@ -1,6 +1,8 @@
 package jp.ac.titech.psg.nakano.keyphrasememo.activities.fragments;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.text.Spannable;
@@ -8,6 +10,7 @@ import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import java.util.List;
@@ -49,6 +52,12 @@ public class PreviewFragment extends android.support.v4.app.Fragment {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
             @Override
             public void onPageSelected(int position) {
+                // hide input
+                Activity activity = getActivity();
+                View focusView = activity.getCurrentFocus();
+                InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(focusView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
                 // set title with underline
                 String title = parent.getMemoTitle();
                 TextView titleView = (TextView) parent.findViewById(R.id.preview_fragment_title);

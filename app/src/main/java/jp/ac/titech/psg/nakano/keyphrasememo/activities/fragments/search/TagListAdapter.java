@@ -38,10 +38,10 @@ public class TagListAdapter extends ArrayAdapter<Tag> {
         }
 
         Tag item = (Tag) getItem(position);
-        TextView textView = (TextView) convertView.findViewById(R.id.taglist_chckbox);
+        TextView textView = (TextView) convertView.findViewById(R.id.taglist_checkbox);
         textView.setText(item.getName());
 
-        CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.taglist_chckbox);
+        CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.taglist_checkbox);
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

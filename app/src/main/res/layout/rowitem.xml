@@ -1,5 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/rowitem"/>
+    android:paddingTop="@dimen/row_padding"
+    android:paddingBottom="@dimen/row_padding">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/row_title"
+        android:textSize="@dimen/row_title_size"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:layout_weight="4"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="left">
+        <TextView
+            android:id="@+id/row_tags"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/row_tags_size"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_gravity="left"/>
+    </LinearLayout>
+
+</LinearLayout>
